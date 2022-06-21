@@ -30,10 +30,9 @@ class LoginStore {
         (failure) => {
               _snackBarManager.showError(message: failure.message),
             }, (loggedUser) {
-      _iAuthentication.setUser(loggedUser);
       //Modular.to.pushNamed('/profile/');
       Modular.to.pushNamedAndRemoveUntil('/profile/', (_) => false);
-      print(loggedUser);
+
       _iAuthentication.setUser(loggedUser);
     });
   }
