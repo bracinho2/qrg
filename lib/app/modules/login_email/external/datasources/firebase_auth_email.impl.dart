@@ -12,22 +12,32 @@ class FirebaseDataSourceImpl implements ILoginDataSource {
   Future<UserModel> loginEmail(
       {required String email, required String password}) async {
     final result = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email.toString(), password: password.toString());
+        email: email, password: password);
     final user = result.user;
 
-    if (user != null) {
-      user.updateDisplayName('PY5TH');
-      print(user.displayName);
-    }
-
-// User(displayName: teste, email: bracinho2@hotmail.com, emailVerified: false, isAnonymous: false,
-//  metadata: UserMetadata(creationTime: 2022-06-20 07:15:44.902, lastSignInTime: 2022-06-21 07:36:04.024),
-// phoneNumber: null, photoURL: null, providerData, [UserInfo(displayName: teste, email: bracinho2@hotmail.com,
-// phoneNumber: null, photoURL: null, providerId: password, uid: bracinho2@hotmail.com)], refreshToken: , tenantId: null, uid: H2BhvMTSUjRv8bfoDsEpnZ2No1V2)
+    print(user);
 
     return UserModel(
       name: user?.displayName,
       email: user?.email,
+    );
+  }
+
+  @override
+  Future<UserModel> signInWithEmail(
+      {required String email,
+      required String password,
+      required String userName}) async {
+    final userCredencial = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+
+    if (userCredencial.user != null) {
+      await _firebaseAuth.currentUser!.updateDisplayName(userName);
+    }
+
+    return UserModel(
+      name: userCredencial.user?.displayName,
+      email: userCredencial.user?.email,
     );
   }
 

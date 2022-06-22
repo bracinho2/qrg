@@ -7,4 +7,9 @@ abstract class ILoginRepository {
       {required String email, required String password});
   Future<Either<Failure, Unit>> logout();
   Future<Either<Failure, LoggedUserInfo>> loggedUser();
+  Future<Either<Failure, LoggedUserInfo>> signInWithEmail({
+    required String email,
+    required String password,
+    required String userName,
+  });
 }

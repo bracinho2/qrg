@@ -37,3 +37,9 @@ class ErrorLoginEmail extends Failure {
   final String message;
   ErrorLoginEmail({required this.message});
 }
+
+class ErrorSignIn extends Failure {
+  @override
+  final String message;
+  ErrorSignIn({required this.message});
+}

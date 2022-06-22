@@ -8,12 +8,14 @@ import 'package:qrg/app/modules/login_email/domain/services/connectivity_service
 import 'package:qrg/app/modules/login_email/domain/usecases/get_logged_user.dart';
 import 'package:qrg/app/modules/login_email/domain/usecases/login_with_email.dart';
 import 'package:qrg/app/modules/login_email/domain/usecases/logout.dart';
+import 'package:qrg/app/modules/login_email/domain/usecases/sign_in_with_email.dart';
 import 'package:qrg/app/modules/login_email/external/datasources/firebase_auth_email.impl.dart';
 import 'package:qrg/app/modules/login_email/external/drivers/flutter_connectivity_driver_impl.dart';
 import 'package:qrg/app/modules/login_email/infra/drivers/connectivity_driver_interface.dart';
 import 'package:qrg/app/modules/login_email/infra/repositories/login_repository_impl.dart';
 import 'package:qrg/app/modules/login_email/infra/services/connectivity_service_impl.dart';
 import 'package:qrg/app/modules/login_email/presenter/page/login_page.dart';
+import 'package:qrg/app/modules/login_email/presenter/page/register_page.dart';
 import 'package:qrg/app/modules/login_email/presenter/store/login_store_controller.dart';
 
 class LoginModule extends Module {
@@ -46,9 +48,13 @@ class LoginModule extends Module {
     //USERCASE
     Bind.lazySingleton<IloginWithEmail>((i) => LoginWithEmailImpl(i(), i()),
         export: true),
+    //USERCASE
+    Bind.lazySingleton<ISignInWithEmailUseCase>(
+        (i) => SignInWithEmailImpl(i(), i()),
+        export: true),
 
     //STORE
-    Bind.lazySingleton<LoginStore>((i) => LoginStore(i(), i(), i()),
+    Bind.lazySingleton<LoginStore>((i) => LoginStore(i(), i(), i(), i()),
         export: true),
   ];
 
@@ -57,5 +63,8 @@ class LoginModule extends Module {
     ChildRoute('/',
         child: ((context, args) =>
             LoginPage(loginStore: Modular.get<LoginStore>()))),
+    ChildRoute('/register/',
+        child: ((context, args) =>
+            RegisterPage(loginStore: Modular.get<LoginStore>()))),
   ];
 }

@@ -13,8 +13,10 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
   LoggedUser toLoggedUser() => this;
 
   @override
+  // ignore: recursive_getters
   String get name => name;
 
   @override
+  // ignore: recursive_getters
   String get email => email;
 }

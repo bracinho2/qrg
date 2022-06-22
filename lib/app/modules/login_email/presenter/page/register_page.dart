@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/modules/login_email/presenter/page/widgets/login_button_widget.dart';
 import 'package:qrg/app/modules/login_email/presenter/page/widgets/login_input_text_widget.dart';
 import 'package:qrg/app/modules/login_email/presenter/store/login_store_controller.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final LoginStore loginStore;
-  const LoginPage({
+  const RegisterPage({
     Key? key,
     required this.loginStore,
   }) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  final _callSignController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -45,6 +45,15 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
               ),
               LoginInputTextWidget(
+                label: 'Indicativo',
+                controller: _callSignController,
+                //validator: ValidatorHelper.validaString,
+                obscureText: false,
+                enabled: true,
+                minLines: 1,
+                maxLines: 1,
+              ),
+              LoginInputTextWidget(
                 label: 'email',
                 controller: _emailController,
                 //validator: ValidatorHelper.validaString,
@@ -63,23 +72,16 @@ class _LoginPageState extends State<LoginPage> {
                 maxLines: 1,
               ),
               LoginButtonWidget(
-                label: 'Entrar',
+                label: 'Registrar',
                 onPressed: () {
-                  setState(() {});
-                  widget.loginStore.checkLogin(
+                  widget.loginStore.signIn(
                     email: _emailController.text,
                     password: _passwordController.text,
+                    userName: _callSignController.text,
                   );
 
-                  _emailController.clear();
-                  _passwordController.clear();
-                },
-              ),
-              LoginButtonWidget(
-                label: 'Ainda não é cadastrado? Registre-se!',
-                onPressed: () {
-                  Modular.to.pushNamedAndRemoveUntil(
-                      '/login/register/', (_) => false);
+                  //_emailController.clear();
+                  //_passwordController.clear();
                 },
               ),
             ],

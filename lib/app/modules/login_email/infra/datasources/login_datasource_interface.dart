@@ -5,4 +5,9 @@ abstract class ILoginDataSource {
       {required String email, required String password});
   Future<UserModel> currentUser();
   Future<void> logout();
+  Future<UserModel> signInWithEmail({
+    required String email,
+    required String password,
+    required String userName,
+  });
 }
