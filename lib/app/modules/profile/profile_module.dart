@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:qrg/app/modules/profile/presenter/ui/profile_page.dart';
+import 'package:qrg/app/modules/profile/presenter/ui/menu_page.dart';
 
 class ProfileModule extends Module {
   @override

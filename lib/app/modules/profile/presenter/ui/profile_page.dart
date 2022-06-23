@@ -1,103 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/core/authentication_store.dart/authentication_store_impl.dart';
-import 'package:qrg/app/modules/login_email/presenter/store/login_store_controller.dart';
-import 'package:qrg/app/modules/profile/presenter/widgets/app_bar_profile_widget.dart';
+import 'package:qrg/app/modules/profile/presenter/ui/widgets/profile_button_widget.dart';
+import 'package:qrg/app/modules/profile/presenter/ui/widgets/profile_input_text_widget.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({
-    Key? key,
-  }) : super(key: key);
+class ProfileUserPage extends StatefulWidget {
+  const ProfileUserPage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<ProfileUserPage> createState() => _ProfileUserPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
-  final PageController _pageController = PageController(initialPage: 0);
-  int indexBottomNavigatorBar = 0;
+final _auth = Modular.get<AuthenticationImpl>();
 
-  final _auth = Modular.get<AuthenticationImpl>();
-  final _controller = Modular.get<LoginStore>();
+final _callSignController = TextEditingController();
+final _emailController = TextEditingController();
+final _phoneController = TextEditingController();
+final _passwordController = TextEditingController();
 
+class _ProfileUserPageState extends State<ProfileUserPage> {
   @override
   Widget build(BuildContext context) {
-    String callSign = '';
-
     final user = _auth.loggedUser;
     if (user != null) {
-      callSign = user.name;
+      _callSignController.text = user.name;
+      _emailController.text = user.email;
+      _callSignController.text = user.name;
+      _callSignController.text = user.name;
     }
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBarProfileWidget(
-          title: callSign,
-          subTitle: 'Hola que tal!',
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ProfileInputTextWidget(
+          controller: _callSignController,
+          label: 'Indicativo',
         ),
-        body: PageView(
-          controller: _pageController,
-          children: [
-            Container(
-              color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      _auth.logout();
-                      Modular.to.pushNamed('/repeaters/');
-                    },
-                    child: const Center(
-                      child: Text('Repetidoras'),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      _auth.logout();
-                      Modular.to.pushNamed('/repeaters/');
-                    },
-                    child: const Center(
-                      child: Text('Logout'),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      _controller.currentUser();
-                    },
-                    child: const Center(
-                      child: Text('Current User()'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              color: Colors.blueAccent,
-              child: const Center(
-                child: Text('Cadastro'),
-              ),
-            ),
-          ],
+        ProfileInputTextWidget(
+          controller: _emailController,
+          label: 'Email',
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: indexBottomNavigatorBar,
-          onTap: (int page) {
-            setState(() {
-              indexBottomNavigatorBar = page;
-              _pageController.animateToPage(
-                page,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.ease,
-              );
-            });
+        ProfileInputTextWidget(
+          controller: _phoneController,
+          label: 'Telefone',
+        ),
+        ProfileInputTextWidget(
+          controller: _passwordController,
+          label: 'Senha',
+        ),
+        ProfileButtonWidget(
+          label: 'Atualizar',
+          onPressed: () {
+            print('OnPressed: Profile Page');
           },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'Cadastro'),
-          ],
         ),
-      ),
+      ],
     );
   }
 }

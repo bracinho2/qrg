@@ -64,6 +64,8 @@ class FirebaseDataSourceImpl implements ILoginDataSource {
       throw ErrorGetLoggedUser(message: 'Não pegou o usuário logado');
     }
 
+    print(user);
+
     return UserModel(
       name: user.displayName!,
       email: user.email!,

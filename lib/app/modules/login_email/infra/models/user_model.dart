@@ -11,4 +11,9 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
         );
 
   LoggedUser toLoggedUser() => this;
+
+  @override
+  String toString() {
+    return 'UserModel(name: $name, email: $email)';
+  }
 }
