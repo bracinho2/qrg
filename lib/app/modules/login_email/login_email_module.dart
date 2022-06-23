@@ -48,13 +48,16 @@ class LoginModule extends Module {
     //USERCASE
     Bind.lazySingleton<IloginWithEmail>((i) => LoginWithEmailImpl(i(), i()),
         export: true),
-    //USERCASE
+
     Bind.lazySingleton<ISignInWithEmailUseCase>(
         (i) => SignInWithEmailImpl(i(), i()),
         export: true),
 
+    Bind.lazySingleton<IGetLoggedUser>((i) => GetLoggedUserImpl(i()),
+        export: true),
+
     //STORE
-    Bind.lazySingleton<LoginStore>((i) => LoginStore(i(), i(), i(), i()),
+    Bind.lazySingleton<LoginStore>((i) => LoginStore(i(), i(), i(), i(), i()),
         export: true),
   ];
 

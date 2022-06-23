@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/core/authentication_store.dart/authentication_store_impl.dart';
+import 'package:qrg/app/modules/login_email/presenter/store/login_store_controller.dart';
 import 'package:qrg/app/modules/profile/presenter/widgets/app_bar_profile_widget.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -17,13 +18,20 @@ class _ProfilePageState extends State<ProfilePage> {
   int indexBottomNavigatorBar = 0;
 
   final _auth = Modular.get<AuthenticationImpl>();
+  final _controller = Modular.get<LoginStore>();
 
   @override
   Widget build(BuildContext context) {
+    String callSign = '';
+
+    final user = _auth.loggedUser;
+    if (user != null) {
+      callSign = user.name;
+    }
     return SafeArea(
       child: Scaffold(
-        appBar: const AppBarProfileWidget(
-          title: 'QRG',
+        appBar: AppBarProfileWidget(
+          title: callSign,
           subTitle: 'Hola que tal!',
         ),
         body: PageView(
@@ -36,6 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   InkWell(
                     onTap: () {
+                      _auth.logout();
                       Modular.to.pushNamed('/repeaters/');
                     },
                     child: const Center(
@@ -49,6 +58,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                     child: const Center(
                       child: Text('Logout'),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      _controller.currentUser();
+                    },
+                    child: const Center(
+                      child: Text('Current User()'),
                     ),
                   ),
                 ],

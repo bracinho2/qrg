@@ -27,19 +27,13 @@ class LoginRepositoryImpl implements ILoginRepository {
   }
 
   @override
-  Future<Either<Failure, LoggedUserInfo>> signInWithEmail(
-      {required String email,
-      required String password,
-      required String userName}) async {
-    try {
-      final user = await _iLoginDataSource.signInWithEmail(
-          email: email, password: password, userName: userName);
-
-      return Right(user);
-    } catch (error) {
-      return Left(
-          ErrorSignIn(message: 'Não foi possível registrar seu usuário.'));
-    }
+  Future<Either<Failure, LoggedUserInfo>> signInWithEmail({
+    required String email,
+    required String password,
+    required String userName,
+  }) async {
+    return await _iLoginDataSource.signInWithEmail(
+        email: email, password: password, userName: userName);
   }
 
   @override

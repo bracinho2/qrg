@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qrg/app/modules/login_email/domain/errors/errors.dart';
 import 'package:qrg/app/modules/login_email/infra/datasources/login_datasource_interface.dart';
@@ -13,32 +14,41 @@ class FirebaseDataSourceImpl implements ILoginDataSource {
       {required String email, required String password}) async {
     final result = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
-    final user = result.user;
-
-    print(user);
+    var user = result.user;
 
     return UserModel(
-      name: user?.displayName,
-      email: user?.email,
+      name: user!.displayName!,
+      email: user.email!,
     );
   }
 
   @override
-  Future<UserModel> signInWithEmail(
+  Future<Either<Failure, UserModel>> signInWithEmail(
       {required String email,
       required String password,
       required String userName}) async {
-    final userCredencial = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
+    try {
+      final userCredencial = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
 
-    if (userCredencial.user != null) {
-      await _firebaseAuth.currentUser!.updateDisplayName(userName);
+      if (userCredencial.user != null) {
+        await _firebaseAuth.currentUser!.updateDisplayName(userName);
+      }
+
+      return Right(
+        UserModel(
+          name: userCredencial.user!.displayName!,
+          email: userCredencial.user!.email!,
+        ),
+      );
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'email-already-in-use') {
+        return Left(ErrorSignIn(message: 'Este email já foi cadastrado!'));
+      }
+    } catch (e) {
+      return Left(ErrorSignIn(message: 'Erro ao cadastrar o email!'));
     }
-
-    return UserModel(
-      name: userCredencial.user?.displayName,
-      email: userCredencial.user?.email,
-    );
+    return Left(ErrorSignIn(message: 'Erro ao cadastrar o email!'));
   }
 
   @override
@@ -55,8 +65,8 @@ class FirebaseDataSourceImpl implements ILoginDataSource {
     }
 
     return UserModel(
-      name: user.displayName,
-      email: user.email,
+      name: user.displayName!,
+      email: user.email!,
     );
   }
 }

@@ -37,6 +37,9 @@ class AppBarProfileWidget extends StatelessWidget
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Text(
                           subTitle,
                           style: const TextStyle(

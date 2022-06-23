@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import 'package:qrg/app/modules/login_email/domain/errors/errors.dart';
 import 'package:qrg/app/modules/login_email/infra/models/user_model.dart';
 
 abstract class ILoginDataSource {
@@ -5,7 +7,7 @@ abstract class ILoginDataSource {
       {required String email, required String password});
   Future<UserModel> currentUser();
   Future<void> logout();
-  Future<UserModel> signInWithEmail({
+  Future<Either<Failure, UserModel>> signInWithEmail({
     required String email,
     required String password,
     required String userName,

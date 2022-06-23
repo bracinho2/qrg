@@ -1,11 +1,11 @@
 class LoggedUser {
-  final String? userName;
-  final String? password;
-  final String? email;
+  final String email;
+  final String name;
 
   LoggedUser({
-    this.userName,
-    this.password,
-    this.email,
+    required this.name,
+    required this.email,
   });
+
+  List<Object> get props => [email, name];
 }

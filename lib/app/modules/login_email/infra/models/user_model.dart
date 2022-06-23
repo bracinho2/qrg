@@ -3,20 +3,12 @@ import 'package:qrg/app/modules/login_email/domain/entities/logged_user_info.dar
 
 class UserModel extends LoggedUser implements LoggedUserInfo {
   UserModel({
-    String? name,
-    String? email,
+    required String name,
+    required String email,
   }) : super(
-          userName: name,
+          name: name,
           email: email,
         );
 
   LoggedUser toLoggedUser() => this;
-
-  @override
-  // ignore: recursive_getters
-  String get name => name;
-
-  @override
-  // ignore: recursive_getters
-  String get email => email;
 }
