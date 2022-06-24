@@ -41,7 +41,10 @@ class RepeaterAddPage extends StatelessWidget {
                       ),
                     ),
                     DropDownWidget(
+                      label: 'Tone',
                       tones: tones,
+                      //value: 'Two',
+                      onChanged: (value) {},
                     ),
                   ],
                 ),

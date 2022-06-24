@@ -1,4 +1,10 @@
-List<String> tones = ['One', 'Two', 'Free', 'Four'];
+List<String> tones = [
+  'Selecione',
+  'One',
+  'Two',
+  'Free',
+  'Four',
+];
 
 class Subtom {
   String number;

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class DropDownWidget extends StatelessWidget {
+  final String label;
   final List<String> tones;
   final Function(String?)? onChanged;
+  final String? value;
   const DropDownWidget({
     Key? key,
     required this.tones,
-    this.onChanged,
+    required this.onChanged,
+    this.value = 'Selecione',
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -14,13 +18,13 @@ class DropDownWidget extends StatelessWidget {
     return Expanded(
       child: DropdownButtonFormField(
         decoration: InputDecoration(
-            border:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.teal)),
-            filled: false,
-            isDense: false,
-            //prefixIcon: Icon(Icons.subtitles),
-            //hintText: '',
-            labelText: 'Subtom'),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+          filled: true,
+          labelText: label,
+        ),
         isExpanded: true,
         items: tones.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
@@ -28,7 +32,7 @@ class DropDownWidget extends StatelessWidget {
             child: Text(value),
           );
         }).toList(),
-        //value: _selectedSubtom,
+        value: value,
         onChanged: onChanged,
       ),
     );
