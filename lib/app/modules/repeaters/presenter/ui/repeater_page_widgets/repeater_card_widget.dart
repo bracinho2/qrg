@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qrg/app/modules/repeaters/domain/entity/repeater_entity.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/widgets/repeater_detail_widget.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/widgets/repeater_location_widget.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/repeater_detail_widget.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/repeater_location_widget.dart';
 
 class RepeaterCard extends StatefulWidget {
   final RepeaterEntity repeaterEntity;

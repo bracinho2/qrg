@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:qrg/app/modules/repeaters/domain/entity/repeater_entity.dart';
 import 'package:qrg/app/modules/repeaters/presenter/controllers/repeater_store.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/widgets/app_bar_widget.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/widgets/repeater_card_widget.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/app_bar_widget.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/repeater_card_widget.dart';
 
 class RepeaterPage extends StatefulWidget {
   final RepeaterStore repeaterStore;

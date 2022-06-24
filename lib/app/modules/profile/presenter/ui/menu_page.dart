@@ -45,7 +45,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   InkWell(
                     onTap: () {
-                      _auth.logout();
                       Modular.to.pushNamed('/repeaters/');
                     },
                     child: const Center(
@@ -67,6 +66,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                     child: const Center(
                       child: Text('Current User()'),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      _auth.logout();
+                      Modular.to.pushNamed('/repeaters/add/');
+                    },
+                    child: const Center(
+                      child: Text('add repeaters'),
                     ),
                   ),
                 ],

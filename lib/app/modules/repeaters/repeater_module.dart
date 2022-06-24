@@ -1,11 +1,14 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/modules/repeaters/domain/repositories/get_all_repeaters_repository.dart';
+import 'package:qrg/app/modules/repeaters/domain/usecase/add_repeater/add_repeater.dart';
+import 'package:qrg/app/modules/repeaters/domain/usecase/add_repeater/add_repeater_impl.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/get_all_repeaters/get_all_repeaters.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/get_all_repeaters/get_all_repeaters_impl.dart';
 import 'package:qrg/app/modules/repeaters/external/remote_storage/get_all_repeaters_datasource_impl.dart';
 import 'package:qrg/app/modules/repeaters/infra/datasources/get_all_repeaters_datasource.dart';
 import 'package:qrg/app/modules/repeaters/infra/repositories/get_all_repeaters_repository_impl.dart';
 import 'package:qrg/app/modules/repeaters/presenter/controllers/repeater_store.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page.dart';
 
 class RepeaterModule extends Module {
@@ -23,6 +26,8 @@ class RepeaterModule extends Module {
     Bind.lazySingleton<IGetAllRepeatersUsecase>(
         (i) => GetAllRepeatersUseCaseImpl(i())),
 
+    Bind.lazySingleton<IAddRepeaterUsecase>((i) => AddRepeaterUsecaseImpl(i())),
+
     //farmer controller
     Bind.factory<RepeaterStore>((i) => RepeaterStore(i())),
   ];
@@ -32,5 +37,6 @@ class RepeaterModule extends Module {
     ChildRoute('/',
         child: ((context, args) =>
             RepeaterPage(repeaterStore: Modular.get<RepeaterStore>()))),
+    ChildRoute('/add/', child: ((context, args) => const RepeaterAddPage())),
   ];
 }

@@ -11,6 +11,10 @@ class AddRepeaterUsecaseImpl implements IAddRepeaterUsecase {
   @override
   Future<Either<Failure, bool>> add(
       {required RepeaterEntity repeaterEntity}) async {
+    if (repeaterEntity.callSign.length < 5) {
+      return Left(UsecaseError(message: 'Digite um indicativo válido!'));
+    }
+
     return _iAddRepeaterRepository.add(repeater: repeaterEntity);
   }
 }

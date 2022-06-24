@@ -2,10 +2,10 @@ abstract class Failure implements Exception {
   String get message;
 }
 
-class FieldEmpty extends Failure {
+class UsecaseError extends Failure {
   @override
   final String message;
-  FieldEmpty({required this.message});
+  UsecaseError({required this.message});
 }
 
 class DatasourceError extends Failure {

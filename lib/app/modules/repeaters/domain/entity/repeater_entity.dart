@@ -5,13 +5,11 @@ class RepeaterEntity {
   String state;
   String country;
   String grid;
-
   String tx;
   String rx;
   String tone;
   String coverage;
   String protocol;
-
   String informedBy;
   bool active;
   bool operation;
