@@ -34,7 +34,21 @@ class RepeaterEntityMapper extends RepeaterEntity {
         );
 
   static Map<String, dynamic> toMap(RepeaterEntity repeaterEntity) {
-    return {};
+    return {
+      'callSign': repeaterEntity.callSign,
+      'city': repeaterEntity.city,
+      'state': repeaterEntity.state,
+      'country': repeaterEntity.country,
+      'grid': repeaterEntity.grid,
+      'tx': repeaterEntity.tx,
+      'rx': repeaterEntity.rx,
+      'tone': repeaterEntity.tone,
+      'coverage': repeaterEntity.coverage,
+      'protocol': repeaterEntity.protocol,
+      'informedBy': repeaterEntity.informedBy,
+      'active': repeaterEntity.active,
+      'operational': repeaterEntity.operation,
+    };
   }
 
   factory RepeaterEntityMapper.fromMap(Map<String, dynamic> map) {

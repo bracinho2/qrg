@@ -2,7 +2,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/core/authentication_store.dart/authentication_store.dart';
 import 'package:qrg/app/core/authentication_store.dart/authentication_store_impl.dart';
-import 'package:qrg/app/core/snack_bar_manager/snack_bar_manager.dart';
 import 'package:qrg/app/modules/login_email/domain/repositories/login_repository_interface.dart';
 import 'package:qrg/app/modules/login_email/domain/services/connectivity_service_interface.dart';
 import 'package:qrg/app/modules/login_email/domain/usecases/get_logged_user.dart';
@@ -40,7 +39,7 @@ class LoginModule extends Module {
     Bind.lazySingleton<ILogout>((i) => LogoutImpl(i()), export: true),
 
     Bind.factory((i) => Connectivity()),
-    Bind.factory((i) => SnackBarManager()),
+
     Bind.factory<IGetLoggedUser>((i) => GetLoggedUserImpl(i()), export: true),
     Bind.singleton<IAuthentication>((i) => AuthenticationImpl(i(), i()),
         export: true),

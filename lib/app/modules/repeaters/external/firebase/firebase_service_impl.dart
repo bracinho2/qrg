@@ -9,7 +9,6 @@ class FirebaseServiceImpl implements IRemoteStorage {
   Future<List<Map<String, dynamic>>> getAll(
       {required String collectionPath}) async {
     final response = await _firestore.collection(collectionPath).get();
-    //print(response.docs.map((e) => print(e.id)));
 
     final lista = response.docs.map((doc) {
       final map = {
@@ -21,5 +20,14 @@ class FirebaseServiceImpl implements IRemoteStorage {
     }).toList();
 
     return lista;
+  }
+
+  @override
+  Future<bool> add(
+      {required String collectionPath,
+      required Map<String, dynamic> map}) async {
+    await _firestore.collection(collectionPath).add(map);
+
+    return true;
   }
 }
