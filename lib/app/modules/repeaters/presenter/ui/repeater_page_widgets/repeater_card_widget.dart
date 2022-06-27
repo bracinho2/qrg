@@ -18,7 +18,7 @@ class RepeaterCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       child: InkWell(
         onTap: () {
-          Modular.to.pushNamed('/repeaters/add/', arguments: repeaterEntity);
+          Modular.to.navigate('/repeaters/add/', arguments: repeaterEntity);
         },
         child: Padding(
           padding: const EdgeInsets.all(5),

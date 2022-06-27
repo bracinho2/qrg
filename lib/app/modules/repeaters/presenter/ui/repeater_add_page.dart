@@ -12,7 +12,7 @@ import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/app
 class RepeaterAddPage extends StatefulWidget {
   final RepeaterEntity? repeaterEntity;
   final RepeaterStore repeaterStore;
-  RepeaterAddPage({
+  const RepeaterAddPage({
     Key? key,
     this.repeaterEntity,
     required this.repeaterStore,
@@ -24,43 +24,7 @@ class RepeaterAddPage extends StatefulWidget {
 
 //final args = Modular.args.data;
 
-final _callSignController = TextEditingController();
-final _gridController = TextEditingController();
-final _txController = TextEditingController();
-final _rxController = TextEditingController();
-final _cityController = TextEditingController();
-final _stateController = TextEditingController();
-final _countryController = TextEditingController();
-final _informedByController = TextEditingController();
-
-String? id;
-String? city;
-String? state;
-String? country;
-String? grid;
-String? tx;
-String? rx;
-String? tone;
-String? coverage;
-String? protocol;
-String? informedBy;
-bool active = true;
-bool operation = true;
-bool isEnabled = false;
-
-String button = 'Informar';
-
 class _RepeaterAddPageState extends State<RepeaterAddPage> {
-  void visible() {
-    setState(() {
-      if (protocol == 'FM') {
-        isEnabled = true;
-      } else {
-        isEnabled = false;
-      }
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -71,8 +35,36 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
     super.dispose();
   }
 
+  final _callSignController = TextEditingController();
+  final _gridController = TextEditingController();
+  final _txController = TextEditingController();
+  final _rxController = TextEditingController();
+  final _cityController = TextEditingController();
+  final _stateController = TextEditingController();
+  final _countryController = TextEditingController();
+  final _informedByController = TextEditingController();
+
+  String? id;
+  String? tone;
+  String? coverage;
+  String? protocol;
+  bool active = true;
+  bool operation = false;
+  bool isEnabled = true;
+
   @override
   Widget build(BuildContext context) {
+    String button = 'Informar';
+    void visible() {
+      setState(() {
+        if (protocol == 'FM') {
+          isEnabled = true;
+        } else {
+          isEnabled = false;
+        }
+      });
+    }
+
     if (widget.repeaterEntity != null) {
       id = widget.repeaterEntity!.id;
       _callSignController.text = widget.repeaterEntity!.callSign;
