@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/core/radio_info/coverages.dart';
 import 'package:qrg/app/core/radio_info/protocols.dart';
 import 'package:qrg/app/core/radio_info/tones.dart';
+import 'package:qrg/app/modules/repeaters/domain/entity/repeater_entity.dart';
 import 'package:qrg/app/modules/repeaters/presenter/controllers/repeater_store.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets.dart/button_widget.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets.dart/drop_down_widget.dart';
@@ -10,15 +10,19 @@ import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/app_bar_widget.dart';
 
 class RepeaterAddPage extends StatefulWidget {
+  final RepeaterEntity? repeaterEntity;
   final RepeaterStore repeaterStore;
-  const RepeaterAddPage({
+  RepeaterAddPage({
     Key? key,
+    this.repeaterEntity,
     required this.repeaterStore,
   }) : super(key: key);
 
   @override
   State<RepeaterAddPage> createState() => _RepeaterAddPageState();
 }
+
+//final args = Modular.args.data;
 
 final _callSignController = TextEditingController();
 final _gridController = TextEditingController();
@@ -28,8 +32,6 @@ final _cityController = TextEditingController();
 final _stateController = TextEditingController();
 final _countryController = TextEditingController();
 final _informedByController = TextEditingController();
-
-final arg = Modular.args.data;
 
 String? id;
 String? city;
@@ -44,8 +46,9 @@ String? protocol;
 String? informedBy;
 bool active = true;
 bool operation = true;
-
 bool isEnabled = false;
+
+String button = 'Informar';
 
 class _RepeaterAddPageState extends State<RepeaterAddPage> {
   void visible() {
@@ -59,7 +62,35 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (widget.repeaterEntity != null) {
+      id = widget.repeaterEntity!.id;
+      _callSignController.text = widget.repeaterEntity!.callSign;
+      _gridController.text = widget.repeaterEntity!.grid;
+      protocol = widget.repeaterEntity!.protocol;
+      tone = widget.repeaterEntity!.tone;
+      coverage = widget.repeaterEntity!.coverage;
+      _txController.text = widget.repeaterEntity!.tx;
+      _rxController.text = widget.repeaterEntity!.rx;
+      _cityController.text = widget.repeaterEntity!.city;
+      _stateController.text = widget.repeaterEntity!.state;
+      _countryController.text = widget.repeaterEntity!.country;
+      _informedByController.text = widget.repeaterEntity!.informedBy;
+
+      operation = widget.repeaterEntity!.operation;
+      active = widget.repeaterEntity!.active;
+      button = 'Atualizar';
+    }
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarWidget(
@@ -111,9 +142,9 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                 Row(
                   children: [
                     DropDownWidget(
-                      label: 'Modo',
+                      label: 'Protocolo',
                       tones: protocols,
-                      //value: 'Two',
+                      value: protocol,
                       onChanged: (value) {
                         protocol = value;
                         visible();
@@ -124,7 +155,7 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                       child: DropDownWidget(
                         label: 'Subtom',
                         tones: tones,
-                        //value: 'Two',
+                        value: tone,
                         onChanged: (value) {
                           tone = value;
                         },
@@ -133,7 +164,7 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                     DropDownWidget(
                       label: 'Cobertura',
                       tones: coverages,
-                      //value: 'Two',
+                      value: coverage,
                       onChanged: (value) {
                         coverage = value;
                       },
@@ -192,10 +223,10 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                   ],
                 ),
                 AddRepeaterButtonWidget(
-                  label: 'Informar',
+                  label: button,
                   onPressed: () {
-                    widget.repeaterStore.addRepeater(
-                      id: id ?? '',
+                    widget.repeaterStore.send(
+                      id: id,
                       callSign: _callSignController.text.toUpperCase(),
                       grid: _gridController.text.toUpperCase(),
                       city: _cityController.text.toUpperCase(),

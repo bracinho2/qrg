@@ -42,6 +42,24 @@ class RepeaterDetail extends StatelessWidget {
         }
         break;
 
+      case 'Fusion-C4FM':
+        {
+          network = 'Fusion-C4FM';
+        }
+        break;
+
+      case 'D-Star':
+        {
+          network = 'D-Star';
+        }
+        break;
+
+      case 'Outro':
+        {
+          network = 'Outro';
+        }
+        break;
+
       default:
         {
           network = 'Analógica';

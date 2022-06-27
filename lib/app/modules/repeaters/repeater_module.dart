@@ -44,12 +44,21 @@ class RepeaterModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/',
-        child: ((context, args) =>
-            RepeaterPage(repeaterStore: Modular.get<RepeaterStore>()))),
-    ChildRoute('/add/',
-        child: ((context, args) => RepeaterAddPage(
-              repeaterStore: Modular.get<RepeaterStore>(),
-            ))),
+    ChildRoute(
+      '/',
+      child: ((context, args) =>
+          RepeaterPage(repeaterStore: Modular.get<RepeaterStore>())),
+      maintainState: false,
+    ),
+    ChildRoute(
+      '/add/',
+      child: ((context, args) => RepeaterAddPage(
+            repeaterStore: Modular.get<RepeaterStore>(),
+            repeaterEntity: args.data,
+          )),
+      transition: TransitionType.fadeIn,
+      duration: Duration(microseconds: 500),
+      maintainState: false,
+    ),
   ];
 }

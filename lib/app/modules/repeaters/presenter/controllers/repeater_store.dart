@@ -66,7 +66,7 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
     setLoading(false);
   }
 
-  Future<void> addRepeater({
+  Future<void> send({
     String? id,
     required String callSign,
     required city,
@@ -99,15 +99,19 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
       operation: operation,
     );
 
-    print(repeaterEntity);
+    if (repeaterEntity.id != '') {
+      print('TEM ID: ' + repeaterEntity.toString());
+    } else {
+      print('NAO TEM ID: ' + repeaterEntity.toString());
+    }
 
-    var result = await _iAddRepeaterUsecase.add(repeaterEntity: repeaterEntity);
+    // var result = await _iAddRepeaterUsecase.add(repeaterEntity: repeaterEntity);
 
-    result.fold((error) {
-      _snackBarManager.showError(message: error.message);
-    }, (sucess) {
-      _snackBarManager.showSuccess(message: 'Cadastrado com sucesso!');
-      Modular.to.pop();
-    });
+    // result.fold((error) {
+    //   _snackBarManager.showError(message: error.message);
+    // }, (sucess) {
+    //   _snackBarManager.showSuccess(message: 'Cadastrado com sucesso!');
+    //   Modular.to.pop();
+    // });
   }
 }

@@ -70,7 +70,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      _auth.logout();
                       Modular.to.pushNamed('/repeaters/add/');
                     },
                     child: const Center(
