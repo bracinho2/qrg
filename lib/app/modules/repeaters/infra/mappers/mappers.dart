@@ -67,7 +67,7 @@ class RepeaterEntityMapper extends RepeaterEntity {
       protocol: map['protocol'],
       informedBy: map['informedBy'],
       active: map['active'] != 'true' ? false : true,
-      operation: map['operation'] != 'true' ? false : true,
+      operation: map['operational'] != 'true' ? false : true,
     );
   }
 }

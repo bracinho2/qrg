@@ -20,7 +20,7 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
     this._snackBarManager,
     this._iUpdateRepeaterUsecase,
   ) : super([]) {
-    fetch();
+    //fetch();
   }
 
   List<RepeaterEntity> _cachedList = [];
@@ -53,21 +53,23 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
     }
   }
 
-  fetch() async {
-    var result = await _iGetAllRepeatersUsecase.getAll();
-
+  Future<void> fetch() async {
+    print('entrou');
     setLoading(true);
+    var result = await _iGetAllRepeatersUsecase.getAll();
+    print('consultou');
     await Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) => setError(failure),
       (success) => {
         success.sort((a, b) => a.callSign.compareTo(b.callSign)),
-        update(success),
+        update(success, force: true),
         _cachedList = success,
       },
     );
 
     setLoading(false);
+    print('saiu');
   }
 
   Future<void> send({
@@ -112,7 +114,6 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
         (
           success,
         ) {
-          fetch();
           _snackBarManager.showSuccess(message: 'Atualizado com sucesso!');
         },
       );
@@ -126,6 +127,7 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
         _snackBarManager.showSuccess(message: 'Cadastrado com sucesso!');
       });
     }
+    await fetch();
     Modular.to.navigate('/repeaters/');
   }
 }

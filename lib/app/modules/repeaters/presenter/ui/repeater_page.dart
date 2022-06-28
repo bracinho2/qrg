@@ -21,6 +21,14 @@ class _RepeaterPageState extends State<RepeaterPage> {
   int indexBottomNavigatorBar = 1;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      widget.repeaterStore.fetch();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     TextEditingController _searchController = TextEditingController();
 
