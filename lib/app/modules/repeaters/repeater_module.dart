@@ -1,16 +1,22 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/modules/repeaters/domain/repositories/add_repeater_repository.dart';
 import 'package:qrg/app/modules/repeaters/domain/repositories/get_all_repeaters_repository.dart';
+import 'package:qrg/app/modules/repeaters/domain/repositories/update_repeater_repository.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/add_repeater/add_repeater.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/add_repeater/add_repeater_impl.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/get_all_repeaters/get_all_repeaters.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/get_all_repeaters/get_all_repeaters_impl.dart';
-import 'package:qrg/app/modules/repeaters/external/remote_storage/add_repeaters_datasource.impl.dart';
+import 'package:qrg/app/modules/repeaters/domain/usecase/update_repeater/update_repeater.dart';
+import 'package:qrg/app/modules/repeaters/domain/usecase/update_repeater/update_repeater_impl.dart';
+import 'package:qrg/app/modules/repeaters/external/remote_storage/add_repeaters_datasource_impl.dart';
 import 'package:qrg/app/modules/repeaters/external/remote_storage/get_all_repeaters_datasource_impl.dart';
+import 'package:qrg/app/modules/repeaters/external/remote_storage/update_repeater_datasource_impl.dart';
 import 'package:qrg/app/modules/repeaters/infra/datasources/add_repeaters_datasource.dart';
 import 'package:qrg/app/modules/repeaters/infra/datasources/get_all_repeaters_datasource.dart';
+import 'package:qrg/app/modules/repeaters/infra/datasources/update_repeater_datasource.dart';
 import 'package:qrg/app/modules/repeaters/infra/repositories/add_repeater_repository_impl.dart';
 import 'package:qrg/app/modules/repeaters/infra/repositories/get_all_repeaters_repository_impl.dart';
+import 'package:qrg/app/modules/repeaters/infra/repositories/update_repeater_repository_impl.dart';
 import 'package:qrg/app/modules/repeaters/presenter/controllers/repeater_store.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page.dart';
@@ -25,6 +31,9 @@ class RepeaterModule extends Module {
     Bind.lazySingleton<IAddAllRepeatersDataSource>(
         (i) => AddRepeaterDataSourceImpl(i())),
 
+    Bind.lazySingleton<IUpdateRepeaterDatasource>(
+        (i) => UpdateRepeaterDatasourceImpl(i())),
+
     //repository
     Bind.lazySingleton<IGetAllRepeatersRepository>(
         (i) => GetAllRepeatersRepositoryImpl(i())),
@@ -32,14 +41,20 @@ class RepeaterModule extends Module {
     Bind.lazySingleton<IAddRepeaterRepository>(
         (i) => AddRepeaterRepositoryImpl(i())),
 
+    Bind.lazySingleton<IUpdateRepeaterRepository>(
+        (i) => UpdateRepeaterRepositoryImpl(i())),
+
     //usecase
     Bind.lazySingleton<IGetAllRepeatersUsecase>(
         (i) => GetAllRepeatersUseCaseImpl(i())),
 
     Bind.lazySingleton<IAddRepeaterUsecase>((i) => AddRepeaterUsecaseImpl(i())),
 
+    Bind.lazySingleton<IUpdateRepeaterUsecase>(
+        (i) => UpdateRepeaterUsecaseImpl(i())),
+
     //farmer controller
-    Bind.factory<RepeaterStore>((i) => RepeaterStore(i(), i(), i())),
+    Bind.factory<RepeaterStore>((i) => RepeaterStore(i(), i(), i(), i())),
   ];
 
   @override

@@ -11,7 +11,6 @@ class AddRepeaterRepositoryImpl implements IAddRepeaterRepository {
   AddRepeaterRepositoryImpl(this._iAddAllRepeatersDataSource);
   @override
   Future<Either<Failure, bool>> add({required RepeaterEntity repeater}) async {
-    print(repeater);
     final response = await _iAddAllRepeatersDataSource.call(
         collectionPath: 'repeaters', map: RepeaterEntityMapper.toMap(repeater));
     try {

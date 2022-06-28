@@ -70,7 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Modular.to.navigate('/repeaters/add/');
+                      Modular.to.pushNamed('/repeaters/add/');
                     },
                     child: const Center(
                       child: Text('add repeaters'),

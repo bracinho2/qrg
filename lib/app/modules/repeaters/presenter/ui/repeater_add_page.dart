@@ -28,6 +28,28 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
   @override
   void initState() {
     super.initState();
+    if (widget.repeaterEntity != null) {
+      id = widget.repeaterEntity!.id;
+      _callSignController.text = widget.repeaterEntity!.callSign;
+      _gridController.text = widget.repeaterEntity!.grid;
+      protocol = widget.repeaterEntity!.protocol;
+      tone = widget.repeaterEntity!.tone;
+      coverage = widget.repeaterEntity!.coverage;
+      _txController.text = widget.repeaterEntity!.tx;
+      _rxController.text = widget.repeaterEntity!.rx;
+      _cityController.text = widget.repeaterEntity!.city;
+      _stateController.text = widget.repeaterEntity!.state;
+      _countryController.text = widget.repeaterEntity!.country;
+      _informedByController.text = widget.repeaterEntity!.informedBy;
+
+      operation = widget.repeaterEntity!.operation;
+      active = widget.repeaterEntity!.active;
+
+      button = 'Atualizar';
+    } else {
+      operation = true;
+      active = false;
+    }
   }
 
   @override
@@ -48,13 +70,13 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
   String? tone;
   String? coverage;
   String? protocol;
-  bool active = true;
-  bool operation = false;
+  bool? active;
+  bool? operation;
   bool isEnabled = true;
+  String button = 'Informar';
 
   @override
   Widget build(BuildContext context) {
-    String button = 'Informar';
     void visible() {
       setState(() {
         if (protocol == 'FM') {
@@ -65,24 +87,6 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
       });
     }
 
-    if (widget.repeaterEntity != null) {
-      id = widget.repeaterEntity!.id;
-      _callSignController.text = widget.repeaterEntity!.callSign;
-      _gridController.text = widget.repeaterEntity!.grid;
-      protocol = widget.repeaterEntity!.protocol;
-      tone = widget.repeaterEntity!.tone;
-      coverage = widget.repeaterEntity!.coverage;
-      _txController.text = widget.repeaterEntity!.tx;
-      _rxController.text = widget.repeaterEntity!.rx;
-      _cityController.text = widget.repeaterEntity!.city;
-      _stateController.text = widget.repeaterEntity!.state;
-      _countryController.text = widget.repeaterEntity!.country;
-      _informedByController.text = widget.repeaterEntity!.informedBy;
-
-      operation = widget.repeaterEntity!.operation;
-      active = widget.repeaterEntity!.active;
-      button = 'Atualizar';
-    }
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarWidget(
@@ -195,7 +199,7 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                     ),
                     Text('Está Instalada?'),
                     Switch(
-                        value: active,
+                        value: active!,
                         onChanged: (value) {
                           setState(() {
                             active = value;
@@ -206,7 +210,7 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                         }),
                     Text('Opera?'),
                     Switch(
-                        value: operation,
+                        value: operation!,
                         onChanged: (value) {
                           setState(() {
                             operation = value;
@@ -230,8 +234,8 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                       coverage: coverage ?? '',
                       protocol: protocol ?? '',
                       informedBy: _informedByController.text.toUpperCase(),
-                      active: active,
-                      operation: operation,
+                      active: active!,
+                      operation: operation!,
                     );
                     _callSignController.clear();
                     _gridController.clear();

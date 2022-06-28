@@ -5,17 +5,20 @@ import 'package:qrg/app/modules/repeaters/domain/entity/repeater_entity.dart';
 import 'package:qrg/app/modules/repeaters/domain/errors/failure.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/add_repeater/add_repeater.dart';
 import 'package:qrg/app/modules/repeaters/domain/usecase/get_all_repeaters/get_all_repeaters.dart';
+import 'package:qrg/app/modules/repeaters/domain/usecase/update_repeater/update_repeater.dart';
 
 // ignore: must_be_immutable
 class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
   final IGetAllRepeatersUsecase _iGetAllRepeatersUsecase;
   final IAddRepeaterUsecase _iAddRepeaterUsecase;
+  final IUpdateRepeaterUsecase _iUpdateRepeaterUsecase;
   final SnackBarManager _snackBarManager;
 
   RepeaterStore(
     this._iGetAllRepeatersUsecase,
     this._iAddRepeaterUsecase,
     this._snackBarManager,
+    this._iUpdateRepeaterUsecase,
   ) : super([]) {
     fetch();
   }
@@ -52,8 +55,9 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
 
   fetch() async {
     var result = await _iGetAllRepeatersUsecase.getAll();
+
     setLoading(true);
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) => setError(failure),
       (success) => {
@@ -100,18 +104,28 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
     );
 
     if (repeaterEntity.id != '') {
-      print('TEM ID: ' + repeaterEntity.toString());
+      var result =
+          await _iUpdateRepeaterUsecase.update(repeaterEntity: repeaterEntity);
+
+      result.fold(
+        (error) => _snackBarManager.showError(message: error.message),
+        (
+          success,
+        ) {
+          fetch();
+          _snackBarManager.showSuccess(message: 'Atualizado com sucesso!');
+        },
+      );
     } else {
-      print('NAO TEM ID: ' + repeaterEntity.toString());
+      var result =
+          await _iAddRepeaterUsecase.add(repeaterEntity: repeaterEntity);
+
+      result.fold((error) {
+        _snackBarManager.showError(message: error.message);
+      }, (sucess) {
+        _snackBarManager.showSuccess(message: 'Cadastrado com sucesso!');
+      });
     }
-
-    // var result = await _iAddRepeaterUsecase.add(repeaterEntity: repeaterEntity);
-
-    // result.fold((error) {
-    //   _snackBarManager.showError(message: error.message);
-    // }, (sucess) {
-    //   _snackBarManager.showSuccess(message: 'Cadastrado com sucesso!');
-    //   Modular.to.pop();
-    // });
+    Modular.to.navigate('/repeaters/');
   }
 }

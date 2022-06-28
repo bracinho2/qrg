@@ -23,6 +23,7 @@ class _RepeaterPageState extends State<RepeaterPage> {
   @override
   Widget build(BuildContext context) {
     TextEditingController _searchController = TextEditingController();
+
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarWidget(

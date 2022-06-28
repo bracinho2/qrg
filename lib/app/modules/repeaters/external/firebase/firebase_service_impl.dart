@@ -30,4 +30,16 @@ class FirebaseServiceImpl implements IRemoteStorage {
 
     return true;
   }
+
+  @override
+  Future<bool> update({
+    required String collectionPath,
+    required Map<String, dynamic> map,
+  }) async {
+    final id = map['id'];
+    map.remove('id');
+
+    await _firestore.collection(collectionPath).doc(id).update(map);
+    return true;
+  }
 }

@@ -57,8 +57,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                         if (_auth.loggedUser != null) {
                           Modular.to.pushNamed('/profile/');
                         } else {
-                          Modular.to.pushNamedAndRemoveUntil(
-                              '/login/', (p0) => false);
+                          Modular.to.pushNamed('/login/');
                         }
                       },
                       child: Column(

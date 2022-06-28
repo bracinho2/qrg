@@ -35,6 +35,7 @@ class RepeaterEntityMapper extends RepeaterEntity {
 
   static Map<String, dynamic> toMap(RepeaterEntity repeaterEntity) {
     return {
+      'id': repeaterEntity.id,
       'callSign': repeaterEntity.callSign,
       'city': repeaterEntity.city,
       'state': repeaterEntity.state,
@@ -46,8 +47,8 @@ class RepeaterEntityMapper extends RepeaterEntity {
       'coverage': repeaterEntity.coverage,
       'protocol': repeaterEntity.protocol,
       'informedBy': repeaterEntity.informedBy,
-      'active': repeaterEntity.active,
-      'operational': repeaterEntity.operation,
+      'active': repeaterEntity.active.toString(),
+      'operational': repeaterEntity.operation.toString(),
     };
   }
 
