@@ -21,6 +21,7 @@ class AuthenticationImpl implements IAuthentication {
   Future<bool> currentUser() async {
     var result = await _iGetLoggedUser.call();
     return result.fold((error) => false, (sucess) {
+      print(sucess.toString());
       setUser(sucess);
       return true;
     });

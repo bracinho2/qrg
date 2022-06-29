@@ -37,6 +37,17 @@ class LoginRepositoryImpl implements ILoginRepository {
   }
 
   @override
+  Future<Either<Failure, LoggedUserInfo>> updateUserParams({
+    required String userName,
+    required String email,
+    required String phone,
+    required String password,
+  }) async {
+    return await _iLoginDataSource.updateUserData(
+        email: email, password: password, userName: userName, phone: phone);
+  }
+
+  @override
   Future<Either<Failure, LoggedUserInfo>> loggedUser() async {
     try {
       var user = await _iLoginDataSource.currentUser();

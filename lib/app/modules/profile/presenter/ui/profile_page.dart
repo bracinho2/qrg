@@ -55,9 +55,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
         ),
         ProfileButtonWidget(
           label: 'Atualizar',
-          onPressed: () {
-            print('OnPressed: Profile Page');
-          },
+          onPressed: () {},
         ),
       ],
     );

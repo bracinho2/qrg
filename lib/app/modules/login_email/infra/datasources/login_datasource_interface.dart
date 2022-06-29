@@ -12,4 +12,10 @@ abstract class ILoginDataSource {
     required String password,
     required String userName,
   });
+  Future<Either<Failure, UserModel>> updateUserData({
+    required String userName,
+    required String email,
+    required String phone,
+    required String password,
+  });
 }

@@ -16,6 +16,9 @@ class FirebaseDataSourceImpl implements ILoginDataSource {
         email: email, password: password);
     var user = result.user;
 
+    print(result);
+    print(user);
+
     return UserModel(
       name: user!.displayName!,
       email: user.email!,
@@ -49,6 +52,30 @@ class FirebaseDataSourceImpl implements ILoginDataSource {
       return Left(ErrorSignIn(message: 'Erro ao cadastrar o email!'));
     }
     return Left(ErrorSignIn(message: 'Erro ao cadastrar o email!'));
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> updateUserData({
+    required String userName,
+    required String email,
+    required String phone,
+    required String password,
+  }) async {
+    try {
+      await _firebaseAuth.currentUser!.updateDisplayName(userName);
+      await _firebaseAuth.currentUser!.updateEmail(email);
+      //await _firebaseAuth.currentUser!.updatePhoneNumber(phone);
+      await _firebaseAuth.currentUser!.updatePassword(password);
+
+      var user = _firebaseAuth.currentUser;
+
+      return Right(UserModel(
+        name: user!.displayName!,
+        email: user.email!,
+      ));
+    } catch (e) {
+      return Left(ErrorSignIn(message: 'Error ao atualizar dados!'));
+    }
   }
 
   @override

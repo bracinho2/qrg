@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/core/authentication_store.dart/authentication_store_impl.dart';
-import 'package:qrg/app/modules/login_email/presenter/store/login_store_controller.dart';
 import 'package:qrg/app/modules/profile/presenter/ui/profile_page.dart';
 import 'package:qrg/app/modules/profile/presenter/widgets/app_bar_profile_widget.dart';
 
@@ -19,7 +18,6 @@ class _ProfilePageState extends State<ProfilePage> {
   int indexBottomNavigatorBar = 0;
 
   final _auth = Modular.get<AuthenticationImpl>();
-  final _controller = Modular.get<LoginStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +108,21 @@ class _ProfilePageState extends State<ProfilePage> {
                             fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text('Sair da área restrita'),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      _auth.currentUser();
+                      //Modular.to.pushNamed('/repeaters/');
+                    },
+                    child: ListTile(
+                      leading: Icon(Icons.exit_to_app, size: 45),
+                      title: Text(
+                        'Current User',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Current'),
                     ),
                   ),
                 ],

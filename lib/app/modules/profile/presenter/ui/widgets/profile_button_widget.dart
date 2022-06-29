@@ -15,8 +15,8 @@ class ProfileButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: 250,
+      height: 35,
+      width: 200,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(10),
