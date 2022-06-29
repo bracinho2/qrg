@@ -54,7 +54,7 @@ class RepeaterModule extends Module {
         (i) => UpdateRepeaterUsecaseImpl(i())),
 
     //farmer controller
-    Bind.factory<RepeaterStore>((i) => RepeaterStore(i(), i(), i(), i())),
+    Bind.lazySingleton<RepeaterStore>((i) => RepeaterStore(i(), i(), i(), i())),
   ];
 
   @override

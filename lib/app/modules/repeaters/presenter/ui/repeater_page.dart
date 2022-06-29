@@ -80,15 +80,15 @@ class _RepeaterPageState extends State<RepeaterPage> {
                       );
                     },
                     onLoading: (_) => const CircularProgressIndicator(),
-                    onState: (context, List<RepeaterEntity> state) {
-                      if (widget.repeaterStore.state.isEmpty) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
+                    onState: (_, List<RepeaterEntity> state) {
+                      // if (widget.repeaterStore.state.isEmpty) {
+                      //   return const Center(
+                      //     child: CircularProgressIndicator(),
+                      //   );
+                      // }
                       return ListView.builder(
                         itemCount: state.length,
-                        itemBuilder: ((context, index) =>
+                        itemBuilder: ((_, index) =>
                             RepeaterCard(repeaterEntity: state[index])),
                       );
                     },

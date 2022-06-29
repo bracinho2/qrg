@@ -72,7 +72,7 @@ class LoginStore {
 
     result.fold(
       (failure) => null,
-      (sucess) => null,
+      (sucess) => print(sucess),
     );
   }
 }

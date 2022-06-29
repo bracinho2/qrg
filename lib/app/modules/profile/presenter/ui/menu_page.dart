@@ -38,17 +38,63 @@ class _ProfilePageState extends State<ProfilePage> {
         body: PageView(
           controller: _pageController,
           children: [
-            Container(
-              color: Colors.amber,
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  InkWell(
+                    onTap: () {
+                      Modular.to.pushNamed('/repeaters/add/');
+                    },
+                    child: ListTile(
+                      leading: Icon(Icons.repeat, size: 45),
+                      title: Text(
+                        'Repetidoras',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Informe os dados de uma Estação'),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: ListTile(
+                      leading: Icon(Icons.hub, size: 45),
+                      title: Text(
+                        'APRS',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Informe os dados de uma Estação APRS'),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: ListTile(
+                      leading: Icon(Icons.cell_tower, size: 45),
+                      title: Text(
+                        'Echolink',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle:
+                          Text('Informe os dados de uma Estação Echolink'),
+                    ),
+                  ),
                   InkWell(
                     onTap: () {
                       Modular.to.pushNamed('/repeaters/');
                     },
-                    child: const Center(
-                      child: Text('Repetidoras'),
+                    child: ListTile(
+                      leading: Icon(Icons.menu, size: 45),
+                      title: Text(
+                        'Voltar ao Menu',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Ir para a página principal'),
                     ),
                   ),
                   InkWell(
@@ -56,24 +102,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       _auth.logout();
                       Modular.to.pushNamed('/repeaters/');
                     },
-                    child: const Center(
-                      child: Text('Logout'),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      _controller.currentUser();
-                    },
-                    child: const Center(
-                      child: Text('Current User()'),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Modular.to.pushNamed('/repeaters/add/');
-                    },
-                    child: const Center(
-                      child: Text('add repeaters'),
+                    child: ListTile(
+                      leading: Icon(Icons.exit_to_app, size: 45),
+                      title: Text(
+                        'Sair',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text('Sair da área restrita'),
                     ),
                   ),
                 ],

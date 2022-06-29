@@ -15,6 +15,7 @@ class ProfileInputTextWidget extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
   final bool? clear;
+  final Icon icon;
 
   const ProfileInputTextWidget({
     Key? key,
@@ -32,47 +33,40 @@ class ProfileInputTextWidget extends StatelessWidget {
     this.minLines,
     this.maxLines,
     this.clear,
+    required this.icon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 5,
+      padding: const EdgeInsets.only(
+        left: 20,
+        right: 20,
       ),
-      child: TextFormField(
-        //style: AppTextStyles.textFormsInput,
-        initialValue: initialValue,
-        minLines: minLines,
-        maxLines: maxLines,
-        obscureText: obscureText,
-        controller: controller,
-        onChanged: onChanged,
-        onSaved: onSaved,
-        enabled: enabled,
-        keyboardType: textInputType,
-        onTap: onTap,
-        //cursorColor: AppColors.cinzaForte,
-        decoration: InputDecoration(
-          labelText: label,
-          //labelStyle: AppTextStyles.textFormsInput,
-          //fillColor: AppColors.cinzaFraco,
-          filled: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+      child: ListTile(
+        leading: icon,
+        title: TextFormField(
+          initialValue: initialValue,
+          obscureText: obscureText,
+          controller: controller,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          enabled: enabled,
+          keyboardType: textInputType,
+          onTap: onTap,
+          decoration: InputDecoration(
+            labelText: label,
+            suffixIcon: clear != null
+                ? IconButton(
+                    onPressed: () {
+                      controller!.clear();
+                    },
+                    icon: const Icon(Icons.clear),
+                  )
+                : null,
           ),
-          suffixIcon: clear != null
-              ? IconButton(
-                  onPressed: () {
-                    controller!.clear();
-                  },
-                  icon: const Icon(Icons.clear),
-                )
-              : null,
+          validator: validator,
         ),
-        validator: validator,
       ),
     );
   }

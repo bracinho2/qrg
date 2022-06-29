@@ -25,8 +25,8 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
     if (user != null) {
       _callSignController.text = user.name;
       _emailController.text = user.email;
-      _callSignController.text = user.name;
-      _callSignController.text = user.name;
+      //_phoneController.text = user.phone;
+      //_passwordController.text = user.password;
     }
 
     return Column(
@@ -35,18 +35,23 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
         ProfileInputTextWidget(
           controller: _callSignController,
           label: 'Indicativo',
+          icon: Icon(Icons.badge),
         ),
         ProfileInputTextWidget(
           controller: _emailController,
           label: 'Email',
+          icon: Icon(Icons.email),
         ),
         ProfileInputTextWidget(
           controller: _phoneController,
           label: 'Telefone',
+          icon: Icon(Icons.phone),
         ),
         ProfileInputTextWidget(
           controller: _passwordController,
           label: 'Senha',
+          obscureText: true,
+          icon: Icon(Icons.password),
         ),
         ProfileButtonWidget(
           label: 'Atualizar',
