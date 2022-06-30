@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:qrg/app/core/authentication_store.dart/authentication_store_impl.dart';
+import 'package:qrg/app/modules/profile/controllers/profile_controller.dart';
 import 'package:qrg/app/modules/profile/presenter/ui/profile_page.dart';
 import 'package:qrg/app/modules/profile/presenter/widgets/app_bar_profile_widget.dart';
 
 class ProfilePage extends StatefulWidget {
+  final ProfileStore store;
   const ProfilePage({
     Key? key,
+    required this.store,
   }) : super(key: key);
 
   @override
@@ -128,7 +132,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            ProfileUserPage(),
+            ProfileUserPage(
+              store: widget.store,
+            ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

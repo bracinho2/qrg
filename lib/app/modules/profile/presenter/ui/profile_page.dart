@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/core/authentication_store.dart/authentication_store_impl.dart';
+import 'package:qrg/app/modules/login_email/user_params.dart';
+import 'package:qrg/app/modules/profile/controllers/profile_controller.dart';
 import 'package:qrg/app/modules/profile/presenter/ui/widgets/profile_button_widget.dart';
 import 'package:qrg/app/modules/profile/presenter/ui/widgets/profile_input_text_widget.dart';
 
 class ProfileUserPage extends StatefulWidget {
-  const ProfileUserPage({Key? key}) : super(key: key);
+  final ProfileStore store;
+  const ProfileUserPage({
+    Key? key,
+    required this.store,
+  }) : super(key: key);
 
   @override
   State<ProfileUserPage> createState() => _ProfileUserPageState();
@@ -42,11 +48,11 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
           label: 'Email',
           icon: Icon(Icons.email),
         ),
-        ProfileInputTextWidget(
-          controller: _phoneController,
-          label: 'Telefone',
-          icon: Icon(Icons.phone),
-        ),
+        // ProfileInputTextWidget(
+        //   controller: _phoneController,
+        //   label: 'Telefone',
+        //   icon: Icon(Icons.phone),
+        // ),
         ProfileInputTextWidget(
           controller: _passwordController,
           label: 'Senha',
@@ -55,7 +61,17 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
         ),
         ProfileButtonWidget(
           label: 'Atualizar',
-          onPressed: () {},
+          onPressed: () {
+            final info = UserParams(
+              email: _emailController.text,
+              phone: '',
+              userName: _callSignController.text.toUpperCase(),
+              password: _passwordController.text,
+            );
+
+            widget.store.updateUserParams(info);
+            _passwordController.clear();
+          },
         ),
       ],
     );
