@@ -64,7 +64,7 @@ class FirebaseDataSourceImpl implements ILoginDataSource {
     try {
       await _firebaseAuth.currentUser!.updateDisplayName(userName);
       await _firebaseAuth.currentUser!.updateEmail(email);
-      //await _firebaseAuth.currentUser!.updatePhoneNumber(phone);
+      //await _firebaseAuth.currentUser!.updatePhoneNumber(PhoneAuthProvider());
       await _firebaseAuth.currentUser!.updatePassword(password);
 
       var user = _firebaseAuth.currentUser;
