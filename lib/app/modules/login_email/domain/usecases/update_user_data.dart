@@ -3,7 +3,6 @@ import 'package:qrg/app/modules/login_email/domain/entities/logged_user_info.dar
 import 'package:qrg/app/modules/login_email/domain/errors/errors.dart';
 import 'package:qrg/app/modules/login_email/domain/repositories/login_repository_interface.dart';
 import 'package:qrg/app/modules/login_email/user_params.dart';
-import 'package:string_validator/string_validator.dart';
 
 abstract class IUpdateUserParams {
   Future<Either<Failure, LoggedUserInfo?>> call(UserParams userParams);

@@ -4,9 +4,9 @@ import 'package:qrg/app/core/radio_info/protocols.dart';
 import 'package:qrg/app/core/radio_info/tones.dart';
 import 'package:qrg/app/modules/repeaters/domain/entity/repeater_entity.dart';
 import 'package:qrg/app/modules/repeaters/presenter/controllers/repeater_store.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets.dart/button_widget.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets.dart/drop_down_widget.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets.dart/input_text_widget.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets/button_widget.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets/drop_down_widget.dart';
+import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets/input_text_widget.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/app_bar_widget.dart';
 
 class RepeaterAddPage extends StatefulWidget {

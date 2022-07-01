@@ -53,7 +53,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        //print(_auth.loggedUser.);
                         if (_auth.loggedUser != null) {
                           Modular.to.pushNamed('/profile/');
                         } else {
@@ -62,18 +61,31 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.login,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            'Informar',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                            ),
-                          ),
+                        children: [
+                          _auth.loggedUser != null
+                              ? Icon(
+                                  Icons.menu,
+                                  color: Colors.white,
+                                )
+                              : Icon(
+                                  Icons.login,
+                                  color: Colors.white,
+                                ),
+                          _auth.loggedUser != null
+                              ? Text(
+                                  'Menu',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Text(
+                                  'Informar',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                  ),
+                                ),
                         ],
                       ),
                     ),

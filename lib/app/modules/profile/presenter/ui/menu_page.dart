@@ -41,33 +41,38 @@ class _ProfilePageState extends State<ProfilePage> {
           controller: _pageController,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+              child: ListView(
                 children: [
+                  Text(
+                    'Para atualizar os dados de uma estação vá na lista principal e busque pelo indicativo. \n\nApenas o informante poderá atualizar as informações da estação.',
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   InkWell(
                     onTap: () {
                       Modular.to.pushNamed('/repeaters/add/');
                     },
                     child: ListTile(
-                      leading: Icon(Icons.repeat, size: 45),
+                      leading: Icon(Icons.repeat, size: 35),
                       title: Text(
                         'Repetidoras',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text('Informe os dados de uma Estação'),
+                      subtitle: Text('Informe os dados de uma Repetidora'),
                     ),
                   ),
                   InkWell(
                     onTap: () {},
                     child: ListTile(
-                      leading: Icon(Icons.hub, size: 45),
+                      leading: Icon(Icons.hub, size: 35),
                       title: Text(
                         'APRS',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text('Informe os dados de uma Estação APRS'),
                     ),
@@ -75,26 +80,29 @@ class _ProfilePageState extends State<ProfilePage> {
                   InkWell(
                     onTap: () {},
                     child: ListTile(
-                      leading: Icon(Icons.cell_tower, size: 45),
+                      leading: Icon(Icons.cell_tower, size: 35),
                       title: Text(
                         'Echolink',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       subtitle:
                           Text('Informe os dados de uma Estação Echolink'),
                     ),
+                  ),
+                  SizedBox(
+                    height: 40,
                   ),
                   InkWell(
                     onTap: () {
                       Modular.to.pushNamed('/repeaters/');
                     },
                     child: ListTile(
-                      leading: Icon(Icons.menu, size: 45),
+                      leading: Icon(Icons.menu, size: 35),
                       title: Text(
-                        'Voltar ao Menu',
+                        'Lista de Repetidoras',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text('Ir para a página principal'),
                     ),
@@ -105,28 +113,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       Modular.to.pushNamed('/repeaters/');
                     },
                     child: ListTile(
-                      leading: Icon(Icons.exit_to_app, size: 45),
+                      leading: Icon(Icons.exit_to_app, size: 35),
                       title: Text(
                         'Sair',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text('Sair da área restrita'),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      _auth.currentUser();
-                      //Modular.to.pushNamed('/repeaters/');
-                    },
-                    child: ListTile(
-                      leading: Icon(Icons.exit_to_app, size: 45),
-                      title: Text(
-                        'Current User',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text('Current'),
                     ),
                   ),
                 ],

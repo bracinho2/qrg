@@ -21,7 +21,6 @@ final _auth = Modular.get<AuthenticationImpl>();
 
 final _callSignController = TextEditingController();
 final _emailController = TextEditingController();
-final _phoneController = TextEditingController();
 final _passwordController = TextEditingController();
 
 class _ProfileUserPageState extends State<ProfileUserPage> {

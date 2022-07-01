@@ -8,6 +8,7 @@ import 'package:qrg/app/modules/login_email/domain/usecases/get_logged_user.dart
 import 'package:qrg/app/modules/login_email/domain/usecases/login_with_email.dart';
 import 'package:qrg/app/modules/login_email/domain/usecases/logout.dart';
 import 'package:qrg/app/modules/login_email/domain/usecases/sign_in_with_email.dart';
+import 'package:qrg/app/modules/login_email/domain/usecases/update_user_data.dart';
 import 'package:qrg/app/modules/login_email/external/datasources/firebase_auth_email.impl.dart';
 import 'package:qrg/app/modules/login_email/external/drivers/flutter_connectivity_driver_impl.dart';
 import 'package:qrg/app/modules/login_email/infra/drivers/connectivity_driver_interface.dart';
@@ -53,6 +54,10 @@ class LoginModule extends Module {
         export: true),
 
     Bind.lazySingleton<IGetLoggedUser>((i) => GetLoggedUserImpl(i()),
+        export: true),
+
+    //profile usecase
+    Bind.lazySingleton<IUpdateUserParams>((i) => UpdateUserParamsImpl(i()),
         export: true),
 
     //STORE
