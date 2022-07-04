@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.io.qrg">
+    package="io.github.qrg">
+
+     <uses-permission android:name="android.permission.INTERNET" /> 
+
    <application
-        android:label="qrg"
+        android:label="QRG"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
