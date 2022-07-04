@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 
 class IvgEntity {
@@ -63,12 +64,12 @@ class GetAllIvgUsecase implements IGetAllIvgUsecase {
 }
 
 //datasource
-abstract class IGetAllIvgDatasource {
+abstract class IGetAllIvgsDatasource {
   Future<List<Map<String, dynamic>>> call();
 }
 
 class GetIvgRepository implements IGetIvgRepository {
-  final IGetAllIvgDatasource _iGetAllIvgDatasource;
+  final IGetAllIvgsDatasource _iGetAllIvgDatasource;
 
   GetIvgRepository(this._iGetAllIvgDatasource);
   @override
@@ -149,5 +150,68 @@ class IvgEntityMapper extends IvgEntity {
       active: map['active'] != 'true' ? false : true,
       operation: map['operational'] != 'true' ? false : true,
     );
+  }
+}
+
+abstract class IRemoteStorage {
+  Future<List<Map<String, dynamic>>> call({required String collectionPath});
+  Future<bool> add(
+      {required String collectionPath, required Map<String, dynamic> map});
+  Future<bool> update(
+      {required String collectionPath, required Map<String, dynamic> map});
+}
+
+class GetAllIvgsDataSourceImpl implements IGetAllIvgsDatasource {
+  final IRemoteStorage _firebaseService;
+
+  GetAllIvgsDataSourceImpl(this._firebaseService);
+  @override
+  Future<List<Map<String, dynamic>>> call() async {
+    final response = await _firebaseService.call(collectionPath: 'ivgs');
+
+    return response;
+  }
+}
+
+class FirebaseServiceImpl implements IRemoteStorage {
+  final FirebaseFirestore _firestore;
+
+  FirebaseServiceImpl(this._firestore);
+  @override
+  Future<List<Map<String, dynamic>>> call(
+      {required String collectionPath}) async {
+    final response = await _firestore.collection(collectionPath).get();
+
+    final lista = response.docs.map((doc) {
+      final map = {
+        'id': doc.reference.id,
+        ...doc.data(),
+      };
+
+      return map;
+    }).toList();
+
+    return lista;
+  }
+
+  @override
+  Future<bool> add(
+      {required String collectionPath,
+      required Map<String, dynamic> map}) async {
+    await _firestore.collection(collectionPath).add(map);
+
+    return true;
+  }
+
+  @override
+  Future<bool> update({
+    required String collectionPath,
+    required Map<String, dynamic> map,
+  }) async {
+    final id = map['id'];
+    map.remove('id');
+
+    await _firestore.collection(collectionPath).doc(id).update(map);
+    return true;
   }
 }
