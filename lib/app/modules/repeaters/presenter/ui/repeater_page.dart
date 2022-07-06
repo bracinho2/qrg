@@ -38,6 +38,29 @@ class _RepeaterPageState extends State<RepeaterPage> {
           title: 'QRG',
           subTitle: 'Bons contatos!',
         ),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              backgroundColor: Colors.amber,
+              foregroundColor: Colors.red,
+              splashColor: Colors.blue,
+              child: Icon(Icons.add),
+              onPressed: () {
+                print('Clicked Button 01 =)');
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            FloatingActionButton(
+              child: Icon(Icons.remove),
+              onPressed: () {
+                print('Clicked Button =)');
+              },
+            ),
+          ],
+        ),
         body: PageView(
           controller: _pageController,
           children: [
