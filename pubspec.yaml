@@ -55,6 +55,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
   flutter_launcher_icons: ^0.9.3
+  dartz_test: ^0.1.0
 
 flutter_icons:
   android: true
