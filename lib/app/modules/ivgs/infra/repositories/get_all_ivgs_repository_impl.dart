@@ -5,10 +5,10 @@ import 'package:qrg/app/modules/ivgs/domain/repository/get_all_ivgs_repository.d
 import 'package:qrg/app/modules/ivgs/infra/datasources/get_all_ivgs_datasource.dart';
 import 'package:qrg/app/modules/ivgs/infra/mappers/mappers.dart';
 
-class GetIAllIvgRepository implements IGetAllIvgsRepository {
+class GetIAllIvgRepositoryImpl implements IGetAllIvgsRepository {
   final IGetAllIvgsDatasource _iGetAllIvgDatasource;
 
-  GetIAllIvgRepository(this._iGetAllIvgDatasource);
+  GetIAllIvgRepositoryImpl(this._iGetAllIvgDatasource);
   @override
   Future<Either<Failure, List<IvgEntity>>> call() async {
     final response = await _iGetAllIvgDatasource();

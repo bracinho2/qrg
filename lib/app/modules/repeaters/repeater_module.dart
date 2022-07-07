@@ -26,35 +26,45 @@ class RepeaterModule extends Module {
   final List<Bind> binds = [
     //datasource
     Bind.lazySingleton<IGetAllRepeatersDataSource>(
-        (i) => GetAllRepeatersDataSourceImpl(i())),
+        (i) => GetAllRepeatersDataSourceImpl(i()),
+        export: true),
 
     Bind.lazySingleton<IAddAllRepeatersDataSource>(
-        (i) => AddRepeaterDataSourceImpl(i())),
+        (i) => AddRepeaterDataSourceImpl(i()),
+        export: true),
 
     Bind.lazySingleton<IUpdateRepeaterDatasource>(
-        (i) => UpdateRepeaterDatasourceImpl(i())),
+        (i) => UpdateRepeaterDatasourceImpl(i()),
+        export: true),
 
     //repository
     Bind.lazySingleton<IGetAllRepeatersRepository>(
-        (i) => GetAllRepeatersRepositoryImpl(i())),
+        (i) => GetAllRepeatersRepositoryImpl(i()),
+        export: true),
 
     Bind.lazySingleton<IAddRepeaterRepository>(
-        (i) => AddRepeaterRepositoryImpl(i())),
+        (i) => AddRepeaterRepositoryImpl(i()),
+        export: true),
 
     Bind.lazySingleton<IUpdateRepeaterRepository>(
-        (i) => UpdateRepeaterRepositoryImpl(i())),
+        (i) => UpdateRepeaterRepositoryImpl(i()),
+        export: true),
 
     //usecase
     Bind.lazySingleton<IGetAllRepeatersUsecase>(
-        (i) => GetAllRepeatersUseCaseImpl(i())),
+        (i) => GetAllRepeatersUseCaseImpl(i()),
+        export: true),
 
-    Bind.lazySingleton<IAddRepeaterUsecase>((i) => AddRepeaterUsecaseImpl(i())),
+    Bind.lazySingleton<IAddRepeaterUsecase>((i) => AddRepeaterUsecaseImpl(i()),
+        export: true),
 
     Bind.lazySingleton<IUpdateRepeaterUsecase>(
-        (i) => UpdateRepeaterUsecaseImpl(i())),
+        (i) => UpdateRepeaterUsecaseImpl(i()),
+        export: true),
 
-    //farmer controller
-    Bind.lazySingleton<RepeaterStore>((i) => RepeaterStore(i(), i(), i(), i())),
+    //Store
+    Bind.lazySingleton<RepeaterStore>((i) => RepeaterStore(i(), i(), i(), i()),
+        export: true),
   ];
 
   @override

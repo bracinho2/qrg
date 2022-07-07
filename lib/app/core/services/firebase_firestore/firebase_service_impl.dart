@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:qrg/app/modules/ivgs/external/firebase/firebase_service.dart';
+import 'package:qrg/app/core/services/firebase_firestore/firebase_service.dart';
 
 class FirebaseServiceImpl implements IRemoteStorage {
   final FirebaseFirestore _firestore;

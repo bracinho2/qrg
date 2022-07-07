@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:qrg/app/modules/repeaters/domain/entity/repeater_entity.dart';
-import 'package:qrg/app/modules/repeaters/presenter/controllers/repeater_store.dart';
-import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/repeater_card_widget.dart';
+import 'package:qrg/app/modules/ivgs/domain/entity/entity.dart';
+import 'package:qrg/app/modules/ivgs/presenter/ivgs_store.dart';
+import 'package:qrg/app/modules/ivgs/presenter/widgets/ivg_card_widget.dart';
 
-class RepeaterPage extends StatefulWidget {
-  final RepeaterStore repeaterStore;
-  const RepeaterPage({
+class IvgPage extends StatefulWidget {
+  final IvgStore ivgStore;
+  const IvgPage({
     Key? key,
-    required this.repeaterStore,
+    required this.ivgStore,
   }) : super(key: key);
 
   @override
-  State<RepeaterPage> createState() => _RepeaterPageState();
+  State<IvgPage> createState() => _IvgPageState();
 }
 
 TextEditingController _searchController = TextEditingController();
 
-class _RepeaterPageState extends State<RepeaterPage> {
+class _IvgPageState extends State<IvgPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,12 +32,12 @@ class _RepeaterPageState extends State<RepeaterPage> {
                 icon: const Icon(Icons.clear),
                 onPressed: () {
                   _searchController.clear();
-                  widget.repeaterStore.onChanged('');
+                  widget.ivgStore.onChanged('');
                 },
               ),
               label: const Text('Procurar'),
             ),
-            onChanged: widget.repeaterStore.onChanged,
+            onChanged: widget.ivgStore.onChanged,
           ),
         ),
         const SizedBox(
@@ -45,7 +45,7 @@ class _RepeaterPageState extends State<RepeaterPage> {
         ),
         Expanded(
           child: ScopedBuilder.transition(
-            store: widget.repeaterStore,
+            store: widget.ivgStore,
             transition: (_, child) {
               return AnimatedSwitcher(
                 duration: const Duration(milliseconds: 500),
@@ -53,16 +53,10 @@ class _RepeaterPageState extends State<RepeaterPage> {
               );
             },
             onLoading: (_) => const CircularProgressIndicator(),
-            onState: (_, List<RepeaterEntity> state) {
-              // if (widget.repeaterStore.state.isEmpty) {
-              //   return const Center(
-              //     child: CircularProgressIndicator(),
-              //   );
-              // }
+            onState: (_, List<IvgEntity> state) {
               return ListView.builder(
                 itemCount: state.length,
-                itemBuilder: ((_, index) =>
-                    RepeaterCard(repeaterEntity: state[index])),
+                itemBuilder: ((_, index) => IvgCard(ivgEntity: state[index])),
               );
             },
           ),

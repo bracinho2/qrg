@@ -1,4 +1,4 @@
-import 'package:qrg/app/modules/repeaters/external/firebase/firebase_service.dart';
+import 'package:qrg/app/core/services/firebase_firestore/firebase_service.dart';
 import 'package:qrg/app/modules/repeaters/infra/datasources/add_repeaters_datasource.dart';
 
 class AddRepeaterDataSourceImpl implements IAddAllRepeatersDataSource {

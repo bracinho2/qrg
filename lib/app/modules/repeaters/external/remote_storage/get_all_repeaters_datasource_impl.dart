@@ -1,4 +1,4 @@
-import 'package:qrg/app/modules/repeaters/external/firebase/firebase_service.dart';
+import 'package:qrg/app/core/services/firebase_firestore/firebase_service.dart';
 import 'package:qrg/app/modules/repeaters/infra/datasources/get_all_repeaters_datasource.dart';
 
 class GetAllRepeatersDataSourceImpl implements IGetAllRepeatersDataSource {
@@ -7,7 +7,7 @@ class GetAllRepeatersDataSourceImpl implements IGetAllRepeatersDataSource {
   GetAllRepeatersDataSourceImpl(this._firebaseService);
   @override
   Future<List<Map<String, dynamic>>> call() async {
-    final response = await _firebaseService.getAll(collectionPath: 'repeaters');
+    final response = await _firebaseService.call(collectionPath: 'repeaters');
 
     return response;
   }

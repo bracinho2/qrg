@@ -20,7 +20,7 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
     this._snackBarManager,
     this._iUpdateRepeaterUsecase,
   ) : super([]) {
-    //fetch();
+    fetch();
   }
 
   List<RepeaterEntity> _cachedList = [];
@@ -37,27 +37,11 @@ class RepeaterStore extends NotifierStore<Failure, List<RepeaterEntity>> {
     setLoading(false);
   }
 
-  filterList({String filter = ''}) {
-    if (filter.isNotEmpty) {
-      setLoading(true);
-      filteredList = _cachedList
-          .where((farmer) =>
-              farmer.callSign.toLowerCase().contains(filter.toLowerCase()) ||
-              farmer.city.toLowerCase().contains(filter.toLowerCase()))
-          .toList();
-
-      update(filteredList);
-      setLoading(false);
-    } else {
-      update(_cachedList);
-    }
-  }
-
   Future<void> fetch() async {
     setLoading(true);
     var result = await _iGetAllRepeatersUsecase.getAll();
 
-    await Future.delayed(Duration(seconds: 2));
+    //await Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) => setError(failure),
       (success) => {

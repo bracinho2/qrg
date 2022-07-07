@@ -56,7 +56,7 @@ class IvgEntityMapper extends IvgEntity {
       city: map['city'],
       state: map['state'],
       country: map['country'],
-      grid: 'grid',
+      grid: map['grid'],
       qrg: map['qrg'],
       tone: map['tone'],
       coverage: map['coverage'],

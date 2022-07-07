@@ -128,11 +128,8 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                       ),
                     ),
                     Expanded(
-                      child: RepeaterAddInputTextWidget(
-                        controller: _rxController,
-                        label: 'RX',
-                      ),
-                    ),
+                        child: RepeaterAddInputTextWidget(
+                            controller: _rxController, label: 'RX'))
                   ],
                 ),
                 Row(

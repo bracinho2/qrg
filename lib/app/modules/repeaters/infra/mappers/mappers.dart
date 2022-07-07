@@ -59,7 +59,7 @@ class RepeaterEntityMapper extends RepeaterEntity {
       city: map['city'],
       state: map['state'],
       country: map['country'],
-      grid: 'grid',
+      grid: map['grid'] ?? '',
       tx: map['tx'],
       rx: map['rx'],
       tone: map['tone'],

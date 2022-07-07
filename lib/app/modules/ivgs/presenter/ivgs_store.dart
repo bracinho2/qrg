@@ -16,7 +16,7 @@ class IvgStore extends NotifierStore<Failure, List<IvgEntity>> {
     //this._snackBarManager,
     //this._iUpdateRepeaterUsecase,
   ) : super([]) {
-    //fetch();
+    fetch();
   }
 
   List<IvgEntity> _cachedList = [];
@@ -31,22 +31,6 @@ class IvgStore extends NotifierStore<Failure, List<IvgEntity>> {
         .toList();
     update(tmpList);
     setLoading(false);
-  }
-
-  filterList({String filter = ''}) {
-    if (filter.isNotEmpty) {
-      setLoading(true);
-      filteredList = _cachedList
-          .where((entity) =>
-              entity.callSign.toLowerCase().contains(filter.toLowerCase()) ||
-              entity.city.toLowerCase().contains(filter.toLowerCase()))
-          .toList();
-
-      update(filteredList);
-      setLoading(false);
-    } else {
-      update(_cachedList);
-    }
   }
 
   Future<void> fetch() async {

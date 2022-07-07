@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:qrg/app/core/services/firebase_firestore/firebase_service_impl.dart';
 import 'package:qrg/app/core/snack_bar_manager/snack_bar_manager.dart';
-import 'package:qrg/app/modules/repeaters/external/firebase/firebase_service_impl.dart';
 
 class CoreModule extends Module {
   @override

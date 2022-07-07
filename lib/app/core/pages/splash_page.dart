@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class SplashPage extends StatelessWidget {
   SplashPage({Key? key}) : super(key: key) {
     Future.delayed(const Duration(seconds: 1)).then((value) {
-      Modular.to.pushNamedAndRemoveUntil('/repeaters/', (_) => false);
+      Modular.to.pushNamedAndRemoveUntil('/home/', (_) => false);
     });
   }
 
