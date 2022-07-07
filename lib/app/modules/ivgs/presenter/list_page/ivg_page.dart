@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:qrg/app/modules/ivgs/domain/entity/entity.dart';
 import 'package:qrg/app/modules/ivgs/presenter/ivgs_store.dart';
-import 'package:qrg/app/modules/ivgs/presenter/widgets/ivg_card_widget.dart';
+import 'package:qrg/app/modules/ivgs/presenter/list_page/widgets/ivg_card_widget.dart';
 
 class IvgPage extends StatefulWidget {
   final IvgStore ivgStore;

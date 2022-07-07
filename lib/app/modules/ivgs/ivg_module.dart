@@ -5,7 +5,8 @@ import 'package:qrg/app/modules/ivgs/external/remote_storage/get_all_ivgs_dataso
 import 'package:qrg/app/modules/ivgs/infra/datasources/get_all_ivgs_datasource.dart';
 import 'package:qrg/app/modules/ivgs/infra/repositories/get_all_ivgs_repository_impl.dart';
 import 'package:qrg/app/modules/ivgs/presenter/ivgs_store.dart';
-import 'package:qrg/app/modules/ivgs/presenter/ui/ivg_page.dart';
+
+import 'presenter/list_page/ivg_page.dart';
 
 class IvgModule extends Module {
   @override

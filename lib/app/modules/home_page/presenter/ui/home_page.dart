@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:qrg/app/core/widgets/app_bar_widget.dart';
 import 'package:qrg/app/modules/ivgs/presenter/ivgs_store.dart';
-import 'package:qrg/app/modules/ivgs/presenter/ui/ivg_page.dart';
+import 'package:qrg/app/modules/ivgs/presenter/list_page/ivg_page.dart';
 import 'package:qrg/app/modules/repeaters/presenter/controllers/repeater_store.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page.dart';
 

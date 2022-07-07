@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:qrg/app/core/authentication_store.dart/authentication_store_impl.dart';
 import 'package:qrg/app/modules/ivgs/domain/entity/entity.dart';
-import 'package:qrg/app/modules/ivgs/presenter/widgets/ivg_detail_widget.dart';
-import 'package:qrg/app/modules/ivgs/presenter/widgets/ivg_location_widget.dart';
+import 'package:qrg/app/modules/ivgs/presenter/list_page/widgets/ivg_detail_widget.dart';
+import 'package:qrg/app/modules/ivgs/presenter/list_page/widgets/ivg_location_widget.dart';
 
 class IvgCard extends StatelessWidget {
   final IvgEntity ivgEntity;
