@@ -5,10 +5,13 @@ import 'package:qrg/app/core/widgets/login_icon_widget.dart';
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String subTitle;
+
+  final bool loginbutton;
   const AppBarWidget({
     Key? key,
     required this.title,
     required this.subTitle,
+    this.loginbutton = false,
   }) : super(key: key);
 
   @override
@@ -26,7 +29,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 Text(title, style: AppTextStyles.appBarTitle),
                 Text(subTitle, style: AppTextStyles.appBarSubtitle),
               ]),
-          LoginIconButton(),
+          if (loginbutton) LoginIconButton(),
         ],
       ),
     );

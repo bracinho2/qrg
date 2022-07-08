@@ -10,22 +10,22 @@ import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_add_page_widgets/input_text_widget.dart';
 import 'package:qrg/app/modules/repeaters/presenter/ui/repeater_page_widgets/app_bar_widget.dart';
 
-class RepeaterAddPage extends StatefulWidget {
+class IvgAddPage extends StatefulWidget {
   final IvgEntity? entity;
   final IvgStore store;
-  const RepeaterAddPage({
+  const IvgAddPage({
     Key? key,
     this.entity,
     required this.store,
   }) : super(key: key);
 
   @override
-  State<RepeaterAddPage> createState() => _RepeaterAddPageState();
+  State<IvgAddPage> createState() => _IvgAddPageState();
 }
 
 //final args = Modular.args.data;
 
-class _RepeaterAddPageState extends State<RepeaterAddPage> {
+class _IvgAddPageState extends State<IvgAddPage> {
   final _callSignController = TextEditingController();
   final _gridController = TextEditingController();
   final _qrgController = TextEditingController();

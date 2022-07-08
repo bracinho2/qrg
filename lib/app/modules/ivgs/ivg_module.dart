@@ -4,6 +4,7 @@ import 'package:qrg/app/modules/ivgs/domain/usecase/get_all_usecase/get_all_ivgs
 import 'package:qrg/app/modules/ivgs/external/remote_storage/get_all_ivgs_datasource_impl.dart';
 import 'package:qrg/app/modules/ivgs/infra/datasources/get_all_ivgs_datasource.dart';
 import 'package:qrg/app/modules/ivgs/infra/repositories/get_all_ivgs_repository_impl.dart';
+import 'package:qrg/app/modules/ivgs/presenter/add_page/add_page.dart';
 import 'package:qrg/app/modules/ivgs/presenter/ivgs_store.dart';
 
 import 'presenter/list_page/ivg_page.dart';
@@ -59,15 +60,15 @@ class IvgModule extends Module {
       child: ((context, args) => IvgPage(ivgStore: Modular.get<IvgStore>())),
       maintainState: false,
     ),
-    // ChildRoute(
-    //   '/add/',
-    //   child: ((context, args) => RepeaterAddPage(
-    //         repeaterStore: Modular.get<RepeaterStore>(),
-    //         repeaterEntity: args.data,
-    //       )),
-    //   transition: TransitionType.fadeIn,
-    //   duration: Duration(microseconds: 500),
-    //   maintainState: false,
-    // ),
+    ChildRoute(
+      '/add/',
+      child: ((context, args) => IvgAddPage(
+            store: Modular.get<IvgStore>(),
+            entity: args.data,
+          )),
+      transition: TransitionType.fadeIn,
+      duration: Duration(microseconds: 500),
+      maintainState: false,
+    ),
   ];
 }

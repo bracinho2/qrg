@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBarWidget(
           title: 'QRG',
           subTitle: 'Hola que tal',
+          loginbutton: true,
         ),
         body: PageView(
           controller: _pageController,

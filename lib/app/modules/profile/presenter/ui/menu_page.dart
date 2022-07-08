@@ -78,11 +78,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Modular.to.pushNamed('/ivgs/add/');
+                    },
                     child: ListTile(
                       leading: Icon(Icons.cell_tower, size: 35),
                       title: Text(
-                        'Echolink',
+                        'IVG',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
