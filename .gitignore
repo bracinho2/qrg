@@ -55,9 +55,10 @@ lib/generated_plugin_registrant.dart
 **/android/gradlew
 **/android/gradlew.bat
 **/android/key.properties
+**/android/keys/key_qrg.jks
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
-**/android/keys/
+**/android/keys/*.jks
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
