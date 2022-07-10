@@ -97,12 +97,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Modular.to.pushNamed('/repeaters/');
+                      Modular.to.pushNamed('/home/');
                     },
                     child: ListTile(
                       leading: Icon(Icons.menu, size: 35),
                       title: Text(
-                        'Lista de Repetidoras',
+                        'Voltar',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -112,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   InkWell(
                     onTap: () {
                       _auth.logout();
-                      Modular.to.pushNamed('/repeaters/');
+                      Modular.to.pushNamed('/home/');
                     },
                     child: ListTile(
                       leading: Icon(Icons.exit_to_app, size: 35),

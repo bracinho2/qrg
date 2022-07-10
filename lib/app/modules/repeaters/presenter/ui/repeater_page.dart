@@ -19,6 +19,14 @@ TextEditingController _searchController = TextEditingController();
 
 class _RepeaterPageState extends State<RepeaterPage> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      widget.repeaterStore.fetch();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

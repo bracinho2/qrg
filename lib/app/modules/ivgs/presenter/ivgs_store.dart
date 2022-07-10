@@ -1,19 +1,22 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:qrg/app/core/snack_bar_manager/snack_bar_manager.dart';
 import 'package:qrg/app/modules/ivgs/domain/entity/entity.dart';
 import 'package:qrg/app/modules/ivgs/domain/errors/errors.dart';
+import 'package:qrg/app/modules/ivgs/domain/usecase/add_ivg_usecase/add_ivg_usecase.dart';
 import 'package:qrg/app/modules/ivgs/domain/usecase/get_all_usecase/get_all_ivgs_usecase.dart';
 
 // ignore: must_be_immutable
 class IvgStore extends NotifierStore<Failure, List<IvgEntity>> {
   final IGetAllIvgUsecase _iGetAllIvgUsecase;
-  //final IAddRepeaterUsecase _iAddRepeaterUsecase;
+  final IAddIvgUsecase _iAddIvgUsecase;
   //final IUpdateRepeaterUsecase _iUpdateRepeaterUsecase;
-  //final SnackBarManager _snackBarManager;
+  final SnackBarManager _snackBarManager;
 
   IvgStore(
     this._iGetAllIvgUsecase,
-    //this._iAddRepeaterUsecase,
-    //this._snackBarManager,
+    this._iAddIvgUsecase,
+    this._snackBarManager,
     //this._iUpdateRepeaterUsecase,
   ) : super([]) {
     fetch();
@@ -37,7 +40,6 @@ class IvgStore extends NotifierStore<Failure, List<IvgEntity>> {
     setLoading(true);
     var result = await _iGetAllIvgUsecase();
 
-    await Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) => setError(failure),
       (success) => {
@@ -96,15 +98,13 @@ class IvgStore extends NotifierStore<Failure, List<IvgEntity>> {
       //   },
       // );
     } else {
-      // var result =
-      //     await _iAddRepeaterUsecase.add(repeaterEntity: repeaterEntity);
+      var result = await _iAddIvgUsecase.call(ivgEntity: repeaterEntity);
 
-      // result.fold((error) {
-      //   _snackBarManager.showError(message: error.message);
-      // }, (sucess) {
-      //   //_snackBarManager.showSuccess(message: 'Cadastrado com sucesso!');
-      //   Modular.to.navigate('/');
-      // });
+      result.fold((error) {
+        _snackBarManager.showError(message: error.message);
+      }, (sucess) {
+        Modular.to.navigate('/home/');
+      });
     }
   }
 }

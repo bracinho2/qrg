@@ -19,6 +19,14 @@ TextEditingController _searchController = TextEditingController();
 
 class _IvgPageState extends State<IvgPage> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      widget.ivgStore.fetch();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
