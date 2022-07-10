@@ -5,19 +5,20 @@ import 'package:qrg/app/modules/ivgs/domain/entity/entity.dart';
 import 'package:qrg/app/modules/ivgs/domain/errors/errors.dart';
 import 'package:qrg/app/modules/ivgs/domain/usecase/add_ivg_usecase/add_ivg_usecase.dart';
 import 'package:qrg/app/modules/ivgs/domain/usecase/get_all_usecase/get_all_ivgs_usecase.dart';
+import 'package:qrg/app/modules/ivgs/domain/usecase/update_ivg_usecase/update_ivg_usecase.dart';
 
 // ignore: must_be_immutable
 class IvgStore extends NotifierStore<Failure, List<IvgEntity>> {
   final IGetAllIvgUsecase _iGetAllIvgUsecase;
   final IAddIvgUsecase _iAddIvgUsecase;
-  //final IUpdateRepeaterUsecase _iUpdateRepeaterUsecase;
+  final IUpdateIvgUsecase _iUpdateIvgUsecase;
   final SnackBarManager _snackBarManager;
 
   IvgStore(
     this._iGetAllIvgUsecase,
     this._iAddIvgUsecase,
     this._snackBarManager,
-    //this._iUpdateRepeaterUsecase,
+    this._iUpdateIvgUsecase,
   ) : super([]) {
     fetch();
   }
@@ -84,19 +85,18 @@ class IvgStore extends NotifierStore<Failure, List<IvgEntity>> {
     );
 
     if (repeaterEntity.id != '') {
-      //var result =
-      //    await _iUpdateRepeaterUsecase.update(repeaterEntity: repeaterEntity);
+      var result = await _iUpdateIvgUsecase.call(ivgEntity: repeaterEntity);
 
-      // result.fold(
-      //   (error) => _snackBarManager.showError(message: error.message),
-      //   (
-      //     success,
-      //   ) {
-      //     fetch();
-      //     //_snackBarManager.showSuccess(message: 'Atualizado com sucesso!');
-      //     Modular.to.navigate('/repeaters/');
-      //   },
-      // );
+      result.fold(
+        (error) => _snackBarManager.showError(message: error.message),
+        (
+          success,
+        ) {
+          fetch();
+          //_snackBarManager.showSuccess(message: 'Atualizado com sucesso!');
+          Modular.to.navigate('/home/');
+        },
+      );
     } else {
       var result = await _iAddIvgUsecase.call(ivgEntity: repeaterEntity);
 

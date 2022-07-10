@@ -227,21 +227,21 @@ class _RepeaterAddPageState extends State<RepeaterAddPage> {
                       country: _countryController.text.toUpperCase(),
                       tx: _txController.text,
                       rx: _rxController.text,
-                      tone: tone ?? '',
-                      coverage: coverage ?? '',
-                      protocol: protocol ?? '',
+                      tone: tone ?? 'No Tone',
+                      coverage: coverage ?? 'Local',
+                      protocol: protocol ?? 'FM',
                       informedBy: _informedByController.text.toUpperCase(),
                       active: active!,
                       operation: operation!,
                     );
-                    _callSignController.clear();
-                    _gridController.clear();
-                    _txController.clear();
-                    _rxController.clear();
-                    _cityController.clear();
-                    _stateController.clear();
-                    _countryController.clear();
-                    _informedByController.clear();
+                    // _callSignController.clear();
+                    // _gridController.clear();
+                    // _txController.clear();
+                    // _rxController.clear();
+                    // _cityController.clear();
+                    // _stateController.clear();
+                    // _countryController.clear();
+                    // _informedByController.clear();
                   },
                 ),
               ],

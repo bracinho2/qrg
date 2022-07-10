@@ -26,7 +26,7 @@ class IvgCard extends StatelessWidget {
       child: InkWell(
         onTap: callSign == ivgEntity.informedBy
             ? () {
-                Modular.to.pushNamed('/repeaters/add/', arguments: ivgEntity);
+                Modular.to.pushNamed('/ivgs/add/', arguments: ivgEntity);
               }
             : null,
         child: Padding(

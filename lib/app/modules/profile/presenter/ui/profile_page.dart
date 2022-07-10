@@ -47,11 +47,6 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
           label: 'Email',
           icon: Icon(Icons.email),
         ),
-        // ProfileInputTextWidget(
-        //   controller: _phoneController,
-        //   label: 'Telefone',
-        //   icon: Icon(Icons.phone),
-        // ),
         ProfileInputTextWidget(
           controller: _passwordController,
           label: 'Senha',

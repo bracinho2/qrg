@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:qrg/app/core/widgets/input_text_widget.dart';
 import 'package:qrg/app/modules/login_email/presenter/page/widgets/login_button_widget.dart';
-import 'package:qrg/app/modules/login_email/presenter/page/widgets/login_input_text_widget.dart';
 import 'package:qrg/app/modules/login_email/presenter/store/login_store_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -44,23 +44,17 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 50,
               ),
-              LoginInputTextWidget(
+              InputTextWidget(
                 label: 'email',
                 controller: _emailController,
-                //validator: ValidatorHelper.validaString,
                 obscureText: false,
-                enabled: true,
-                minLines: 1,
-                maxLines: 1,
+                icon: Icon(Icons.person),
               ),
-              LoginInputTextWidget(
-                label: 'senha',
+              InputTextWidget(
+                label: 'password',
                 controller: _passwordController,
-                //validator: ValidatorHelper.validaString,
                 obscureText: true,
-                enabled: true,
-                minLines: 1,
-                maxLines: 1,
+                icon: Icon(Icons.password),
               ),
               LoginButtonWidget(
                 label: 'Entrar',

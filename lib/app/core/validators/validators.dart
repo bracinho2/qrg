@@ -1,9 +1,9 @@
 bool validateFrequency({required String value}) {
   if (value.length == 6) {
-    final sentence = RegExp(r'^\d\d.\d\d\d');
+    final sentence = RegExp(r'^\d\d.\d\d\d$');
     return sentence.hasMatch(value);
   } else {
-    final sentence = RegExp(r'^\d\d\d.\d\d\d');
+    final sentence = RegExp(r'^\d\d\d.\d\d\d$', dotAll: true);
     return sentence.hasMatch(value);
   }
 }

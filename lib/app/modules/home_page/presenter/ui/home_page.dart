@@ -37,12 +37,6 @@ class _HomePageState extends State<HomePage> {
           children: [
             IvgPage(ivgStore: widget.ivgStore),
             RepeaterPage(repeaterStore: widget.repeaterStore),
-            Container(
-              color: Colors.blueAccent,
-              child: const Center(
-                child: Text('Em Breve =)'),
-              ),
-            ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -64,9 +58,6 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings_input_antenna_rounded),
                 label: 'Repeaters'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings_input_antenna_rounded),
-                label: 'APRS'),
           ],
         ),
       ),

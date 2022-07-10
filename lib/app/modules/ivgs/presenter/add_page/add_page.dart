@@ -108,6 +108,7 @@ class _IvgAddPageState extends State<IvgAddPage> {
                       child: InputTextWidget(
                         controller: _callSignController,
                         label: 'Indicativo',
+                        icon: Icon(Icons.email),
                       ),
                     ),
                     Expanded(
@@ -124,6 +125,7 @@ class _IvgAddPageState extends State<IvgAddPage> {
                       child: InputTextWidget(
                         controller: _qrgController,
                         label: 'QRG',
+                        icon: Icon(Icons.email),
                       ),
                     ),
                   ],
@@ -166,12 +168,14 @@ class _IvgAddPageState extends State<IvgAddPage> {
                       child: InputTextWidget(
                         controller: _cityController,
                         label: 'Cidade',
+                        icon: Icon(Icons.email),
                       ),
                     ),
                     Expanded(
                       child: InputTextWidget(
                         controller: _stateController,
                         label: 'Estado',
+                        icon: Icon(Icons.email),
                       ),
                     ),
                     Expanded(
@@ -188,6 +192,7 @@ class _IvgAddPageState extends State<IvgAddPage> {
                       child: InputTextWidget(
                         controller: _informedByController,
                         label: 'Informante',
+                        icon: Icon(Icons.email),
                       ),
                     ),
                     Text('Está Instalado?'),
@@ -222,20 +227,20 @@ class _IvgAddPageState extends State<IvgAddPage> {
                       state: _stateController.text.toUpperCase(),
                       country: _countryController.text.toUpperCase(),
                       qrg: _qrgController.text,
-                      tone: tone ?? '',
-                      coverage: coverage ?? '',
-                      protocol: protocol ?? '',
+                      tone: tone ?? 'No Tone',
+                      coverage: coverage ?? 'Local',
+                      protocol: protocol ?? 'FM',
                       informedBy: _informedByController.text.toUpperCase(),
                       active: active!,
                       operation: operation!,
                     );
-                    _callSignController.clear();
-                    _gridController.clear();
-                    _qrgController.clear();
-                    _cityController.clear();
-                    _stateController.clear();
-                    _countryController.clear();
-                    _informedByController.clear();
+                    // _callSignController.clear();
+                    // _gridController.clear();
+                    // _qrgController.clear();
+                    // _cityController.clear();
+                    // _stateController.clear();
+                    // _countryController.clear();
+                    // _informedByController.clear();
                   },
                 ),
               ],

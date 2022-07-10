@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qrg/app/core/widgets/input_text_widget.dart';
 import 'package:qrg/app/modules/login_email/presenter/page/widgets/login_button_widget.dart';
-import 'package:qrg/app/modules/login_email/presenter/page/widgets/login_input_text_widget.dart';
 import 'package:qrg/app/modules/login_email/presenter/store/login_store_controller.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -44,32 +44,23 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(
                 height: 50,
               ),
-              LoginInputTextWidget(
-                label: 'Indicativo',
+              InputTextWidget(
+                label: 'indicativo',
                 controller: _callSignController,
-                //validator: ValidatorHelper.validaString,
                 obscureText: false,
-                enabled: true,
-                minLines: 1,
-                maxLines: 1,
+                icon: Icon(Icons.badge),
               ),
-              LoginInputTextWidget(
+              InputTextWidget(
                 label: 'email',
                 controller: _emailController,
-                //validator: ValidatorHelper.validaString,
                 obscureText: false,
-                enabled: true,
-                minLines: 1,
-                maxLines: 1,
+                icon: Icon(Icons.person),
               ),
-              LoginInputTextWidget(
-                label: 'senha',
+              InputTextWidget(
+                label: 'password',
                 controller: _passwordController,
-                //validator: ValidatorHelper.validaString,
                 obscureText: true,
-                enabled: true,
-                minLines: 1,
-                maxLines: 1,
+                icon: Icon(Icons.password),
               ),
               LoginButtonWidget(
                 label: 'Registrar',
